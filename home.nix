@@ -4,7 +4,8 @@
   ...
 }:
 {
-  imports = [ ./modules/nvim.nix
+  imports = [ 
+    ./modules/nvim.nix
     ./configs/plasma6.nix
   ];
 
@@ -17,4 +18,9 @@
   };
 
   home.stateVersion = "25.11";
+
+  home.file.".local/share/fonts/CozetteVector-nerd.ttf".source =
+    builtins.fetchurl "https://deprived.dev/assets/CozetteVector-nerd.ttf";
+
+  fonts.fontconfig.enable = true;
 }

@@ -16,4 +16,8 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJw1ckvXz78ITeqANrWSkJl6PJo2AMA4myNrRMBAB7xW zhentao2004@gmail.com"
     ];
   };
+
+  security.sudo.extraConfig = ''
+    Defaults        timestamp_timeout=300
+  '';
 }

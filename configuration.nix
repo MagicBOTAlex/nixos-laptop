@@ -27,6 +27,7 @@
     ./users.nix
 
     ./modules/de.nix
+
     # ./modules/displayOff.nix
   ];
 
@@ -100,12 +101,6 @@
   home-manager.users.root = { pkgs, ... }: {
     home.stateVersion = "24.05";
     imports = [ ./modules/nvim.nix ];
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "dk";
-    variant = "";
   };
 
   # Configure console keymap

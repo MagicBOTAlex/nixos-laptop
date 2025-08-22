@@ -1,15 +1,9 @@
 {pkgs, ...}:{
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # # Enable the XFCE Desktop Environment.
   # services.xserver.displayManager.lightdm.enable = true;
   # services.xserver.desktopManager.xfce.enable = true;
 
   imports = [ ./submodules/plasma6.nix ];
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
   
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
@@ -30,4 +24,34 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  }
+
+  services.xserver = {
+    enable = true;
+    libinput.enable = true;
+
+    # Configure keymap in X11
+    xkb = {
+      layout = "dk";
+      variant = "nodeadkeys";
+    };
+  };
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      "default" = {
+        ids = [ "*" ];
+        settings = {
+          # This needs to be a Nix attribute set, not a string.
+          main = {
+            # Bindings with special characters like '+' need to be in quotes.
+            "leftcontrol+leftalt" = "rightalt";
+
+            # Other bindings can be added here as well:
+            # capslock = "overload(control, escape)";
+          };
+        };
+      };
+    };
+  };
+}

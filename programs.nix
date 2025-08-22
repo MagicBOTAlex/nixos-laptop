@@ -16,6 +16,8 @@
     firefox
     wl-clipboard
     discord
+    killall
+    # fontforge
 
   ];
 
