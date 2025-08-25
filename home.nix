@@ -2,7 +2,8 @@
   imports = [
     ./modules/nvim.nix
     ./configs/plasma6.nix
-    # ./homeModules/spotify.nix 
+    ./homeModules/btop.nix
+
   ];
 
   # packages only for this user

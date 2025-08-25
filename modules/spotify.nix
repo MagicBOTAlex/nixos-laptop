@@ -1,3 +1,5 @@
+# https://github.com/the-argus/spicetify-nix/blob/master/pkgs/themes.nix
+
 { lib, config, pkgs, inputs, ... }: {
   programs.spicetify =
     let spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};

@@ -4,8 +4,7 @@
 
     shellAliases = {
       nrb = "sudo nixos-rebuild switch --flake /etc/nixos --impure  --fallback";
-      nrbr =
-        "sudo nixos-rebuild switch --flake /etc/nixos --impure --reboot  --fallback";
+      nrbr = "nrb && sudo reboot now";
       ni = "nvim /etc/nixos/configuration.nix";
       bat =
         "upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E 'state|percentage'";

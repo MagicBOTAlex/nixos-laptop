@@ -33,6 +33,18 @@
     options = [ "fmask=0077" "dmask=0077" ];
   };
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true; # Show battery charge of Bluetooth devices
+      };
+    };
+  };
+
+  services.blueman.enable = true;
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

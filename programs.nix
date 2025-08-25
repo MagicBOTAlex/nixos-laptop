@@ -6,7 +6,6 @@
     curl
     fastfetch
     tree
-    btop-cuda
     pigz
     ncdu
     screen
