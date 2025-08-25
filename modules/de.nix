@@ -1,10 +1,10 @@
-{pkgs, ...}:{
+{ pkgs, ... }: {
   # # Enable the XFCE Desktop Environment.
   # services.xserver.displayManager.lightdm.enable = true;
   # services.xserver.desktopManager.xfce.enable = true;
 
   imports = [ ./submodules/plasma6.nix ];
-  
+
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "botmain";
@@ -32,7 +32,7 @@
     # Configure keymap in X11
     xkb = {
       layout = "dk";
-      variant = "nodeadkeys";
+      variant = "";
     };
   };
 
@@ -42,13 +42,16 @@
       "default" = {
         ids = [ "*" ];
         settings = {
-          # This needs to be a Nix attribute set, not a string.
           main = {
-            # Bindings with special characters like '+' need to be in quotes.
             "leftcontrol+leftalt" = "rightalt";
 
-            # Other bindings can be added here as well:
-            # capslock = "overload(control, escape)";
+            # "leftcontrol+leftalt+7" = "rightalt+7";
+            #
+            # "leftcontrol+leftalt+8" = "rightalt+8";
+            #
+            # "leftcontrol+leftalt+9" = "rightalt+9";
+            #
+            # "leftcontrol+leftalt+0" = "rightalt+0";
           };
         };
       };

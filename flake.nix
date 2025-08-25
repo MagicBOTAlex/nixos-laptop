@@ -2,6 +2,7 @@
   inputs = {
     # get pinned version of nixpkgs. update with `nix flake update nixpkgs` or `nix flake update` for all inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
     # home manager
     home-manager = {
@@ -14,32 +15,35 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-plasma-manager = {
+    plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
   };
-  outputs =
-    { self, nixpkgs, ... }@inputs:
-    {
-      # configuration name matches hostname, so this system is chosen by default
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        # pass along all the inputs and stuff to the system function
-        specialArgs = { inherit inputs; };
-        modules = [
-          # import configuration
-          ./configuration.nix
+  outputs = { self, nixpkgs-xr, nixpkgs, ... }@inputs: {
+    # configuration name matches hostname, so this system is chosen by default
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      # pass along all the inputs and stuff to the system function
+      specialArgs = { inherit inputs; };
+      modules = [
+        # import configuration
+        ./configuration.nix
 
-          # home manager part 2
-          inputs.home-manager.nixosModules.default
+        # home manager part 2
+        inputs.home-manager.nixosModules.default
 
-          {home-manager.sharedModules = [inputs.plasma-manager.homeManagerModules.plasma-manager];}
+        {
+          home-manager.sharedModules =
+            [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+        }
 
-          inputs.nix-index-database.nixosModules.nix-index
+        inputs.nix-index-database.nixosModules.nix-index
 
-          { programs.nix-index-database.comma.enable = true; }
-        ];
-      };
+        nixpkgs-xr.nixosModules.nixpkgs-xr
+
+        { programs.nix-index-database.comma.enable = true; }
+      ];
     };
+  };
 }

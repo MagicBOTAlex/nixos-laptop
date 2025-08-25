@@ -1,4 +1,4 @@
-{pkgs,...} : {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     neovim
     wget
@@ -6,18 +6,22 @@
     curl
     fastfetch
     tree
-    btop
+    btop-cuda
     pigz
     ncdu
     screen
     nixfmt-tree
     ffmpeg-full
 
+    ### Desktop programs
     firefox
     wl-clipboard
     discord
     killall
     # fontforge
+    gparted
+    prismlauncher
+    mission-center
 
   ];
 
