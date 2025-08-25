@@ -1,5 +1,9 @@
 { pkgs, lib, ... }: {
-  imports = [ ./modules/nvim.nix ./configs/plasma6.nix ];
+  imports = [
+    ./modules/nvim.nix
+    ./configs/plasma6.nix
+    # ./homeModules/spotify.nix 
+  ];
 
   # packages only for this user
   home.packages = [ ];

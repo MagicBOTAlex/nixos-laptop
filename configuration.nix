@@ -17,6 +17,7 @@
     ./modules/nodejs.nix
     ./modules/vr.nix
     ./modules/steam.nix
+    ./modules/spotify.nix
 
     ./modules/fishShell.nix
 

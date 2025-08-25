@@ -8,9 +8,9 @@
     enable = true;
     openFirewall = true;
     autoStart = true;
-    package = pkgs.wivrn.override {
-      ovrCompatSearchPaths = "${pkgs.xrizer}/lib/xrizer";
-    };
+    # package = pkgs.wivrn.override {
+    #   ovrCompatSearchPaths = "${pkgs.xrizer}/lib/xrizer";
+    # };
 
     defaultRuntime = true;
   };

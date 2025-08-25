@@ -20,8 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
-  outputs = { self, nixpkgs-xr, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs-xr, spicetify-nix, nixpkgs, ... }@inputs: {
     # configuration name matches hostname, so this system is chosen by default
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       # pass along all the inputs and stuff to the system function
@@ -29,6 +31,7 @@
       modules = [
         # import configuration
         ./configuration.nix
+        spicetify-nix.nixosModules.default
 
         # home manager part 2
         inputs.home-manager.nixosModules.default
