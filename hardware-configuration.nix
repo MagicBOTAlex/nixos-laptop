@@ -27,23 +27,16 @@
     fsType = "ntfs";
   };
 
+  fileSystems."/mnt/shit" = {
+    device = "/dev/disk/by-uuid/DCFE4455FE4429DA";
+    fsType = "ntfs";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/2D51-9331";
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" ];
   };
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true; # Show battery charge of Bluetooth devices
-      };
-    };
-  };
-
-  services.blueman.enable = true;
 
   swapDevices = [ ];
 

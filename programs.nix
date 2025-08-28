@@ -11,6 +11,8 @@
     screen
     nixfmt-tree
     ffmpeg-full
+    udev
+    systemd
 
     ### Desktop programs
     firefox
@@ -21,7 +23,13 @@
     gparted
     prismlauncher
     mission-center
+    ungoogled-chromium
+    megasync
 
+    libreoffice-fresh
+    hunspell
+    hunspellDicts.da-dk
+    # orca-slicer
   ];
 
   programs.starship.enable = true;

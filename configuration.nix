@@ -11,13 +11,17 @@
     ./aliases.nix
     ./docker.nix
     ./modules/drivers/nvidia.nix
+    ./modules/drivers/bluetooth.nix
+
+    ./networking/openvpn-work.nix
 
     ./programs.nix
-    ./modules/python.nix
+    # ./modules/python.nix
     ./modules/nodejs.nix
     ./modules/vr.nix
     ./modules/steam.nix
     ./modules/spotify.nix
+    # ./modules/freecad.nix
 
     ./modules/fishShell.nix
 
@@ -27,6 +31,12 @@
 
     # ./modules/displayOff.nix
   ];
+
+  nix.settings = {
+    download-attempts = 1;
+    connect-timeout = 1;
+  };
+  environment.variables.EDITOR = "nvim";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

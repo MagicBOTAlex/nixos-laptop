@@ -13,10 +13,12 @@
       all = "sudo chmod -R a+rwx ./*";
       ng = "cd /etc/nginx/ && sudo nvim .";
       copy = "xclip -sel clip";
-      pubkey = "cat ~/.ssh/id_ed25519.pub | copy";
+      pubkey = "cat ~/.ssh/id_ed25519.pub | wl-copy";
       up = "docker compose up -d";
       down = "docker compose down";
       server = "ssh botserver@192.168.50.82";
+      vpnup = "systemctl start openvpn-work.service";
+      vpndown = "systemctl down openvpn-work.service";
     };
 
     interactiveShellInit = ''
