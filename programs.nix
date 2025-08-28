@@ -11,8 +11,6 @@
     screen
     nixfmt-tree
     ffmpeg-full
-    udev
-    systemd
 
     ### Desktop programs
     firefox

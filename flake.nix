@@ -21,32 +21,38 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    avalonia = {
+      url = "github:dfgHiatus/VRCFaceTracking.Avalonia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
-  outputs = { self, nixpkgs-xr, spicetify-nix, nixpkgs, ... }@inputs: {
-    # configuration name matches hostname, so this system is chosen by default
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      # pass along all the inputs and stuff to the system function
-      specialArgs = { inherit inputs; };
-      modules = [
-        # import configuration
-        ./configuration.nix
-        spicetify-nix.nixosModules.default
+  outputs =
+    { self, nixpkgs-xr, spicetify-nix, nixpkgs, avalonia, ... }@inputs: {
+      # configuration name matches hostname, so this system is chosen by default
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        # pass along all the inputs and stuff to the system function
+        specialArgs = { inherit inputs; };
+        modules = [
+          # import configuration
+          ./configuration.nix
+          spicetify-nix.nixosModules.default
 
-        # home manager part 2
-        inputs.home-manager.nixosModules.default
+          # home manager part 2
+          inputs.home-manager.nixosModules.default
 
-        {
-          home-manager.sharedModules =
-            [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
-        }
+          {
+            home-manager.sharedModules =
+              [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+          }
 
-        inputs.nix-index-database.nixosModules.nix-index
+          inputs.nix-index-database.nixosModules.nix-index
 
-        nixpkgs-xr.nixosModules.nixpkgs-xr
+          nixpkgs-xr.nixosModules.nixpkgs-xr
 
-        { programs.nix-index-database.comma.enable = true; }
-      ];
+          { programs.nix-index-database.comma.enable = true; }
+        ];
+      };
     };
-  };
 }

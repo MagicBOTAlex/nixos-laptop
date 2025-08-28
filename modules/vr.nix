@@ -1,7 +1,12 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     motoc # Quest to PC tracking calibration
     wlx-overlay-s # Requires "--fallback" in sudo nixos-rebuild switch --flake /etc/nixos --impure  --fallback
+    # wayvr-dashboard
+    # (pkgs.callPackage ./submodules/vrcft.nix { })
+    oscavmgr
+    # inputs.avalonia.packages.x86_64-linux.default
+
   ];
 
   services.wivrn = {

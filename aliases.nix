@@ -19,6 +19,7 @@
       server = "ssh botserver@192.168.50.82";
       vpnup = "systemctl start openvpn-work.service";
       vpndown = "systemctl down openvpn-work.service";
+      inspect = "nix edit nixpkgs#$1";
     };
 
     interactiveShellInit = ''
@@ -26,9 +27,16 @@
         if test (count $argv) -lt 1
           echo "usage: enter <container-name-or-id>"
             return 1
-          end
+        end
         docker exec -it $argv[1] sh
-            end
+      end
+      function inspect
+        if test (count $argv) -lt 1
+          echo "usage: inspect <package name>"
+            return 1
+        end
+        nix edit "nixpkgs#$argv[1]"
+      end
     '';
   };
 }
