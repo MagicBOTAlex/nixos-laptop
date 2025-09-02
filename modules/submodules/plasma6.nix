@@ -3,5 +3,5 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  imports = [ ./../chinese-keyboard.nix ];
+  imports = [ ./../submodules/chineseInput.nix ];
 }

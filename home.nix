@@ -1,10 +1,12 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+let toggles = import ./toggles.nix;
+in {
   imports = [
     ./modules/nvim.nix
     ./configs/plasma6.nix
     ./homeModules/btop.nix
 
-  ];
+  ] ++ lib.optional toggles.wezterm.enable ./homeModules/wezterm.nix;
 
   # packages only for this user
   home.packages = [ ];
@@ -16,13 +18,13 @@
 
   home.stateVersion = "25.11";
 
-  home.file.".local/share/fonts/CozetteVector-nerd.ttf".source =
-    builtins.fetchurl "https://deprived.dev/assets/CozetteVector-nerd.ttf";
+  # home.file.".local/share/fonts/CozetteVector-nerd.ttf".source =
+  #   builtins.fetchurl "https://deprived.dev/assets/CozetteVector-nerd.ttf";
 
-  # home.file.".local/share/fonts/CozetteVector-nerd.ttf".source = pkgs.fetchurl {
-  #   url = "https://deprived.dev/assets/CozetteVector-nerd.ttf";
-  #   sha256 = "0qj4zkhy3f6gqimfr2zflq21f83c509v5y9b433i98l287kpl5y3";
-  # };
+  home.file.".local/share/fonts/CozetteVector-nerd.ttf".source = pkgs.fetchurl {
+    url = "https://deprived.dev/assets/CozetteVector-nerd.ttf";
+    sha256 = "sha256-ARPAIDFCUOHnlMywNBA6jagEiKxprXK9MtW/z4z1pfU=";
+  };
 
   fonts.fontconfig.enable = true;
 }

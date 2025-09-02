@@ -16,10 +16,18 @@
       pubkey = "cat ~/.ssh/id_ed25519.pub | wl-copy";
       up = "docker compose up -d";
       down = "docker compose down";
-      server = "ssh botserver@192.168.50.82";
+      server = "ssh botserver@gitea.deprived.dev -p 224";
+      main = "ssh botmain@192.168.50.58";
       vpnup = "systemctl start openvpn-work.service";
       vpndown = "systemctl down openvpn-work.service";
       inspect = "nix edit nixpkgs#$1";
+      workssh = "ssh zhen@188.245.106.241";
+      desk = "ssh botmain@gitea.deprived.dev -p 226";
+
+      fe = "nix develop";
+      fed = "nvim flake.nix";
+      cdn = "cd /etc/nixos";
+
     };
 
     interactiveShellInit = ''

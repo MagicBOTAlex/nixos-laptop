@@ -3,34 +3,42 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, inputs, ... }:
-
-{
+let toggles = import ./toggles.nix;
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./aliases.nix
     ./docker.nix
     ./modules/drivers/nvidia.nix
+    ./modules/drivers/amdcpu.nix
     ./modules/drivers/bluetooth.nix
 
-    ./networking/openvpn-work.nix
+    #    ./networking/openvpn-work.nix
 
     ./programs.nix
     # ./modules/python.nix
     ./modules/nodejs.nix
-    ./modules/vr.nix
-    ./modules/steam.nix
+    # ./modules/vr.nix
+    #    ./modules/steam.nix
     ./modules/spotify.nix
     # ./modules/freecad.nix
+    ./modules/gparted.nix
 
     ./modules/fishShell.nix
 
     ./users.nix
-
     ./modules/de.nix
 
     # ./modules/displayOff.nix
-  ];
+
+    # Do not disable under here =========================== Disable in toggles.nix
+  ]
+
+    ++ lib.optional (toggles.printing3D.enable) ./modules/printing3D.nix;
+
+  nixpkgs.config.permittedInsecurePackages = [ ]
+    ++ lib.optional (toggles.printing3D.enable) "libsoup-2.74.3";
 
   nix.settings = {
     download-attempts = 1;
@@ -49,9 +57,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
@@ -84,6 +89,12 @@
   };
 
   services.openssh = { enable = true; };
+  systemd.services.sshd = {
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+  };
+  networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "wpa_supplicant";
 
   programs.neovim = {
     enable = true;
@@ -93,7 +104,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    users = { "botmain" = import ./home.nix; };
+    users = { "botlap" = import ./home.nix; };
   };
 
   # Root uses the exact same module

@@ -11,6 +11,7 @@
     screen
     nixfmt-tree
     ffmpeg-full
+    kubectl
 
     ### Desktop programs
     firefox
@@ -23,12 +24,21 @@
     mission-center
     ungoogled-chromium
     megasync
+    inkscape
+    krita
+    vtk
+    filezilla
+    # google-chrome
+    wine-wayland
 
     libreoffice-fresh
     hunspell
     hunspellDicts.da-dk
     # orca-slicer
+    sublime-merge
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
 
   programs.starship.enable = true;
 }
