@@ -13,6 +13,7 @@ in {
     ./modules/drivers/nvidia.nix
     ./modules/drivers/amdcpu.nix
     ./modules/drivers/bluetooth.nix
+    ./modules/lenovoLegion.nix
 
     #    ./networking/openvpn-work.nix
 
@@ -35,15 +36,16 @@ in {
     # Do not disable under here =========================== Disable in toggles.nix
   ]
 
-    ++ lib.optional (toggles.printing3D.enable) ./modules/printing3D.nix;
+    ++ lib.optional (toggles.printing3D.enable or false)
+    ./modules/printing3D.nix;
 
   nixpkgs.config.permittedInsecurePackages = [ ]
-    ++ lib.optional (toggles.printing3D.enable) "libsoup-2.74.3";
+    ++ lib.optional (toggles.printing3D.enable or false) "libsoup-2.74.3";
 
-  nix.settings = {
-    download-attempts = 1;
-    connect-timeout = 1;
-  };
+  # nix.settings = {
+  #   download-attempts = 3;
+  #   connect-timeout = 3;
+  # };
   environment.variables.EDITOR = "nvim";
 
   # Bootloader.
@@ -103,6 +105,7 @@ in {
   };
 
   home-manager = {
+    useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs; };
     users = { "botlap" = import ./home.nix; };
   };

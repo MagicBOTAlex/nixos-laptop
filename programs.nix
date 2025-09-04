@@ -36,6 +36,8 @@
     hunspellDicts.da-dk
     # orca-slicer
     sublime-merge
+    rustdesk
+
   ];
 
   nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];

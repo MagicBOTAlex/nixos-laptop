@@ -1,9 +1,14 @@
 # https://nix-community.github.io/plasma-manager/options.xhtml
 
+{ pkgs, lib, ... }:
 let
   toggles = import ./../toggles.nix;
   term = if (toggles.wezterm.enable) then "wezterm" else "konsole";
-in { pkgs, lib, ... }: {
+  ruskWallpaper = pkgs.fetchurl {
+    url = "https://deprived.dev/assets/zhen/nixos/RuskBackground-nix.png";
+    hash = "sha256-bvwUuWclgAo3aBmG2H65YRUIFgh2xjiHMsICcZQOQf8=";
+  };
+in {
   programs.plasma = {
     enable = true;
     workspace.colorScheme = "BreezeDark";
@@ -40,6 +45,14 @@ in { pkgs, lib, ... }: {
       productId = "317c";
       naturalScroll = true;
     }];
+
+    workspace = {
+      wallpaper = ruskWallpaper;
+      #
+    };
+
+    session.sessionRestore.restoreOpenApplicationsOnLogin =
+      "startWithEmptySession";
   };
 
   # # In toggles.nix if wezterm enabled, then disable konsole

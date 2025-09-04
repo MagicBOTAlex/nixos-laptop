@@ -32,9 +32,11 @@
     { self, nixpkgs-xr, spicetify-nix, nixpkgs, avalonia, ... }@inputs: {
       # configuration name matches hostname, so this system is chosen by default
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         # pass along all the inputs and stuff to the system function
         specialArgs = { inherit inputs; };
         modules = [
+          ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
           # import configuration
           ./configuration.nix
           spicetify-nix.nixosModules.default

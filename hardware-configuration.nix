@@ -23,10 +23,28 @@
     options = [ "fmask=0077" "dmask=0077" ];
   };
 
+  fileSystems."/mint" = {
+    device = "/dev/disk/by-partuuid/a0450884-11e2-4db3-9cfd-e2735ef8eb5e";
+    fsType = "ext4";
+  };
+
+  fileSystems."/win" = {
+    device = "/dev/disk/by-partuuid/48327e1e-3a36-4a1b-897b-1f69bb8c1a1e";
+    fsType = "ntfs";
+  };
+
   swapDevices = [{
     device = "/dev/disk/by-partuuid/75cfd4e3-ce96-4967-9afa-dca1709b0364";
     randomEncryption.enable = true;
   }];
+
+  # boot.kernelParams = ["resume_offset=<offset>"];
+  boot.resumeDevice =
+    "/dev/disk/by-partuuid/75cfd4e3-ce96-4967-9afa-dca1709b0364";
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

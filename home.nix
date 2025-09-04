@@ -6,7 +6,8 @@ in {
     ./configs/plasma6.nix
     ./homeModules/btop.nix
 
-  ] ++ lib.optional toggles.wezterm.enable ./homeModules/wezterm.nix;
+  ] ++ lib.optional (toggles.wezterm.enable or false) ./homeModules/wezterm.nix
+    ++ lib.optional (toggles.vscode.enable or false) ./homeModules/vscode.nix;
 
   # packages only for this user
   home.packages = [ ];
