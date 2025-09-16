@@ -1,6 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+flake-overlays:
 
 { config, pkgs, lib, inputs, ... }:
 let toggles = import ./toggles.nix;
@@ -18,7 +16,7 @@ in {
     #    ./networking/openvpn-work.nix
 
     ./programs.nix
-    # ./modules/python.nix
+    ./modules/python.nix
     ./modules/nodejs.nix
     # ./modules/vr.nix
     #    ./modules/steam.nix
@@ -34,13 +32,19 @@ in {
     # ./modules/displayOff.nix
 
     # Do not disable under here =========================== Disable in toggles.nix
-  ]
-
-    ++ lib.optional (toggles.printing3D.enable or false)
+  ] ++ lib.optional (toggles.printing3D.enable or false)
     ./modules/printing3D.nix;
 
   nixpkgs.config.permittedInsecurePackages = [ ]
     ++ lib.optional (toggles.printing3D.enable or false) "libsoup-2.74.3";
+
+  nixpkgs.overlays = [
+    (final: prev:
+      {
+        # Your own overlays...
+      })
+  ] ++ flake-overlays;
+  environment.systemPackages = with pkgs; [ matlab ];
 
   # nix.settings = {
   #   download-attempts = 3;

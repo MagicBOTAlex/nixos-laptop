@@ -36,6 +36,17 @@
     };
   };
 
+  services.evremap = {
+    enable = true;
+    settings = {
+      device_name = "Corsair CORSAIR K65 PLUS WIRELESS Keyboard";
+      remap = [{
+        input = [ "KEY_LEFTALT" "KEY_LEFTCTRL" ];
+        output = [ "KEY_RIGHTALT" ];
+      }];
+    };
+  };
+
   services.keyd = {
     enable = true;
     keyboards = {

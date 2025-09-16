@@ -27,9 +27,15 @@
     };
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nix-matlab = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:doronbehar/nix-matlab";
+    };
   };
   outputs =
-    { self, nixpkgs-xr, spicetify-nix, nixpkgs, avalonia, ... }@inputs: {
+    { self, nixpkgs-xr, spicetify-nix, nixpkgs, nix-matlab, ... }@inputs:
+    let flake-overlays = [ nix-matlab.overlay ];
+    in {
       # configuration name matches hostname, so this system is chosen by default
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -38,7 +44,7 @@
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
           # import configuration
-          ./configuration.nix
+          (import ./configuration.nix flake-overlays)
           spicetify-nix.nixosModules.default
 
           # home manager part 2

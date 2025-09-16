@@ -37,6 +37,8 @@
     # orca-slicer
     sublime-merge
     rustdesk
+    drawio
+    haruna
 
   ];
 

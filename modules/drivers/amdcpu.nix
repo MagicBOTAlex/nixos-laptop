@@ -23,6 +23,5 @@
     lm_sensors
     corectrl
   ];
-
   services.thermald.enable = true;
 }
