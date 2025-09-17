@@ -34,13 +34,10 @@
   };
 
   swapDevices = [{
-    device = "/dev/disk/by-partuuid/75cfd4e3-ce96-4967-9afa-dca1709b0364";
-    randomEncryption.enable = true;
+    device = "/dev/nvme1n1p4";
   }];
+  boot.resumeDevice = "/dev/nvme1n1p4";
 
-  # boot.kernelParams = ["resume_offset=<offset>"];
-  boot.resumeDevice =
-    "/dev/disk/by-partuuid/75cfd4e3-ce96-4967-9afa-dca1709b0364";
   powerManagement = {
     enable = true;
     powertop.enable = true;
