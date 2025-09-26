@@ -21,21 +21,21 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    avalonia = {
-      url = "github:dfgHiatus/VRCFaceTracking.Avalonia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    nix-matlab = {
+
+    minemouth.url = "github:nikp123/minecraft-plymouth-theme";
+    minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";
+    minesddm = {
+      url = "github:Davi-S/sddm-theme-minesddm";
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "gitlab:doronbehar/nix-matlab";
     };
   };
   outputs =
-    { self, nixpkgs-xr, spicetify-nix, nixpkgs, nix-matlab, ... }@inputs:
-    let flake-overlays = [ nix-matlab.overlay ];
-    in {
+    { self, nixpkgs-xr, spicetify-nix, nixpkgs, minemouth, ... }@inputs:
+    let
+      flake-overlays = [ ];
+    in
+    {
       # configuration name matches hostname, so this system is chosen by default
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -49,6 +49,9 @@
 
           # home manager part 2
           inputs.home-manager.nixosModules.default
+
+          inputs.minesddm.nixosModules.default
+          inputs.minegrub-world-sel-theme.nixosModules.default
 
           {
             home-manager.sharedModules =

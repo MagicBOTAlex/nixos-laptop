@@ -1,13 +1,14 @@
 { pkgs, lib, ... }:
 let toggles = import ./toggles.nix;
-in {
+in
+{
   imports = [
     ./modules/nvim.nix
     ./configs/plasma6.nix
     ./homeModules/btop.nix
 
   ] ++ lib.optional (toggles.wezterm.enable or false) ./homeModules/wezterm.nix
-    ++ lib.optional (toggles.vscode.enable or false) ./homeModules/vscode.nix;
+  ++ lib.optional (toggles.vscode.enable or false) ./homeModules/vscode.nix;
 
   # packages only for this user
   home.packages = [ ];

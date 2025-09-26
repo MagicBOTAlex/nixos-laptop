@@ -1,8 +1,9 @@
 flake-overlays:
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, minecraft-plymouth-theme, ... }:
 let toggles = import ./toggles.nix;
-in {
+in
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -33,7 +34,11 @@ in {
 
     # Do not disable under here =========================== Disable in toggles.nix
   ] ++ lib.optional (toggles.printing3D.enable or false)
-    ./modules/printing3D.nix;
+    ./modules/printing3D.nix
+  ++ lib.optional (toggles.mineboot.enable or false)
+    ./modules/mineboot.nix;
+  # ++ lib.optional (!(toggles.mineboot.enable or false))
+  #   ./modules/normalBoot.nix;
 
   nixpkgs.config.permittedInsecurePackages = [ ]
     ++ lib.optional (toggles.printing3D.enable or false) "libsoup-2.74.3";
@@ -44,18 +49,13 @@ in {
         # Your own overlays...
       })
   ] ++ flake-overlays;
-  environment.systemPackages = with pkgs; [ matlab ];
+  environment.systemPackages = with pkgs; [ ];
 
   # nix.settings = {
   #   download-attempts = 3;
   #   connect-timeout = 3;
   # };
   environment.variables.EDITOR = "nvim";
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 2;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

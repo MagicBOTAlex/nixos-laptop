@@ -8,7 +8,8 @@ let
     url = "https://deprived.dev/assets/zhen/nixos/RuskBackground-nix.png";
     hash = "sha256-bvwUuWclgAo3aBmG2H65YRUIFgh2xjiHMsICcZQOQf8=";
   };
-in {
+in
+{
   programs.plasma = {
     enable = true;
     workspace.colorScheme = "BreezeDark";
@@ -20,23 +21,38 @@ in {
 
     };
 
-    hotkeys.commands."launch-konsole" = {
-      name = "Launch Konsole";
-      key = "Meta+Return";
-      command = term;
-    };
+    hotkeys.commands =
+      {
+        "launch-konsole" = {
+          name = "Launch Konsole";
+          key = "Meta+Return";
+          command = term;
+        };
 
-    hotkeys.commands."launch-konsole2" = {
-      name = "Launch Konsole";
-      key = "Meta+F1";
-      command = term;
-    };
+        "launch-konsole2" = {
+          name = "Launch Konsole";
+          key = "Meta+F1";
+          command = term;
+        };
 
-    hotkeys.commands."launch-missioncenter" = {
-      name = "Launches the windows task manager alternative";
-      key = "Ctrl+Shift+Esc";
-      command = "missioncenter";
-    };
+        "launch-missioncenter" = {
+          name = "Launches the windows task manager alternative";
+          key = "Ctrl+Shift+Esc";
+          command = "missioncenter";
+        };
+
+        "screenshot-to-clipboard" = {
+          name = "Region screenshot to clipboard";
+          key = "Meta+Shift+S";
+          command = "spectacle -brc";
+        };
+
+        "qalculate" = {
+          name = "Windows like quick calculate";
+          key = "Alt+Space";
+          command = "qalculate-qt";
+        };
+      };
 
     input.touchpads = [{
       enable = true;
@@ -53,11 +69,14 @@ in {
 
     session.sessionRestore.restoreOpenApplicationsOnLogin =
       "startWithEmptySession";
+    spectacle.shortcuts.launch = "";
   };
 
   # # In toggles.nix if wezterm enabled, then disable konsole
   # environment.plasma6.excludePackages =
   #   lib.optional toggles.wezterm.enable (with pkgs.kdePackages; [ konsole ]);
+
+  home.packages = with pkgs; [ qalculate-qt ];
 
   programs.konsole = {
     # enable = !toggles.wezterm.enable;

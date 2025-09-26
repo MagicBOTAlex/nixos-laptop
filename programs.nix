@@ -39,6 +39,7 @@
     rustdesk
     drawio
     haruna
+    toybox
 
   ];
 
