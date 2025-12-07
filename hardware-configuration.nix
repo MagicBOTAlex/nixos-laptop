@@ -33,9 +33,17 @@
     fsType = "ntfs";
   };
 
+  # fileSystems."/mnt/monero" = {
+  #   device = "/dev/nvme1n1p5";
+  #   fsType = "ext4";
+  # };
+
+
+
   swapDevices = [{
     device = "/dev/nvme1n1p4";
   }];
+  zramSwap.enable = true;
   boot.resumeDevice = "/dev/nvme1n1p4";
 
   powerManagement = {

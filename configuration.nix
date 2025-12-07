@@ -13,8 +13,10 @@ in
     ./modules/drivers/amdcpu.nix
     ./modules/drivers/bluetooth.nix
     ./modules/lenovoLegion.nix
-
+    ./modules/svelteSupport.nix
     #    ./networking/openvpn-work.nix
+
+    # ./modules/crypto/mxr/mining.nix
 
     ./programs.nix
     ./modules/python.nix
@@ -26,19 +28,19 @@ in
     ./modules/gparted.nix
 
     ./modules/fishShell.nix
+    ./modules/pigz.nix
 
     ./users.nix
     ./modules/de.nix
+    ./modules/ydotool.nix
 
     # ./modules/displayOff.nix
 
     # Do not disable under here =========================== Disable in toggles.nix
+    ./modules/keyboardMouse.nix
+    ./modules/bootOptions.nix
   ] ++ lib.optional (toggles.printing3D.enable or false)
-    ./modules/printing3D.nix
-  ++ lib.optional (toggles.mineboot.enable or false)
-    ./modules/mineboot.nix;
-  # ++ lib.optional (!(toggles.mineboot.enable or false))
-  #   ./modules/normalBoot.nix;
+    ./modules/printing3D.nix;
 
   nixpkgs.config.permittedInsecurePackages = [ ]
     ++ lib.optional (toggles.printing3D.enable or false) "libsoup-2.74.3";

@@ -5,6 +5,7 @@ in
   imports = [
     ./modules/nvim.nix
     ./configs/plasma6.nix
+    ./configs/sharedPlasma.nix
     ./homeModules/btop.nix
 
   ] ++ lib.optional (toggles.wezterm.enable or false) ./homeModules/wezterm.nix

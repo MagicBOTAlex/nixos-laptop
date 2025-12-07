@@ -13,6 +13,7 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJw1ckvXz78ITeqANrWSkJl6PJo2AMA4myNrRMBAB7xW zhentao2004@gmail.com"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKhcUZbIMX0W27l/FMF5WijpdsJAK329/P008OEAfcyz botmain@nixos"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILB0esg3ABIcYWxvQKlPuwEE6cbhNcWjisfky0wnGirJ root@nixos"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxUPAsPkri0B+xkO3sCHJZfKgAbgPcepP8J4WW4yyLj u0_a167@localhost"
       ];
     };
 
@@ -26,4 +27,16 @@
   security.sudo.extraConfig = ''
     Defaults        timestamp_timeout=300
   '';
+
+  security.sudo.extraRules = [
+    {
+      users = [ "botlap" ];
+      commands = [
+        {
+          command = "/home/botmain/.nix-profile/bin/ydotool";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 }

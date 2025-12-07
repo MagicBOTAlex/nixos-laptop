@@ -39,33 +39,57 @@
   services.evremap = {
     enable = true;
     settings = {
-      device_name = "Corsair CORSAIR K65 PLUS WIRELESS Keyboard";
-      remap = [{
-        input = [ "KEY_LEFTALT" "KEY_LEFTCTRL" ];
-        output = [ "KEY_RIGHTALT" ];
-      }];
+      # device_name = "ITE Tech. Inc. ITE Device(8258) Keyboard";
+      device_name = "Chicony HP Business Slim Keyboard";
+      remap = [
+        {
+          input = [ "KEY_LEFTALT" "KEY_LEFTCTRL" ];
+          output = [ "KEY_RIGHTALT" ];
+        }
+        {
+          input = [ "KEY_LEFTMETA" "KEY_LEFTCTRL" ];
+          output = [ "KEY_LEFTALT" "KEY_LEFTCTRL" ];
+        }
+      ];
     };
   };
 
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      "default" = {
-        ids = [ "*" ];
-        settings = {
-          main = {
-            "leftcontrol+leftalt" = "rightalt";
+  systemd.services.evremap-bluetooth = {
+    description = "evremap for external keyboard";
+    wantedBy = [ "multi-user.target" ];
 
-            # "leftcontrol+leftalt+7" = "rightalt+7";
-            #
-            # "leftcontrol+leftalt+8" = "rightalt+8";
-            #
-            # "leftcontrol+leftalt+9" = "rightalt+9";
-            #
-            # "leftcontrol+leftalt+0" = "rightalt+0";
-          };
-        };
-      };
+    serviceConfig = {
+      ExecStart =
+        "${pkgs.evremap}/bin/evremap remap /etc/evremap-bluetooth.toml";
+      DynamicUser = true;
+      SupplementaryGroups = [ "input" "uinput" ];
+      Restart = "on-failure";
     };
   };
+  environment.etc."evremap-bluetooth.toml".text = ''
+    device_name = "K65 PLUS BLE3 Keyboard"
+
+    [[remap]]
+    input = ["KEY_LEFTALT", "KEY_LEFTCTRL"]
+    output = ["KEY_RIGHTALT"]
+
+    [[remap]]
+    input  = ["KEY_RIGHTCTRL"]
+    output = ["KEY_SCROLLLOCK"]
+  '';
+
+
+  # services.keyd = {
+  #   enable = true;
+  #   keyboards = {
+  #     "default" = {
+  #       ids = [ "*" ];
+  #       settings = {
+  #         main = {
+  #           "leftcontrol+leftalt" = "rightalt";
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
 }

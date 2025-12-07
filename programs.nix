@@ -18,6 +18,10 @@
     wl-clipboard
     discord
     killall
+    bruno
+    argocd
+    go
+    immich-cli
     # fontforge
     gparted
     prismlauncher
@@ -36,10 +40,11 @@
     hunspellDicts.da-dk
     # orca-slicer
     sublime-merge
-    rustdesk
+    # rustdesk
     drawio
     haruna
     toybox
+    gitoxide
 
   ];
 

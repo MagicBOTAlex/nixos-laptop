@@ -33,7 +33,13 @@
   outputs =
     { self, nixpkgs-xr, spicetify-nix, nixpkgs, minemouth, ... }@inputs:
     let
-      flake-overlays = [ ];
+      flake-overlays = [
+        (final: prev: {
+          libsForQt5 = (prev.libsForQt5 or { }) // {
+            layer-shell-qt = prev.kdePackages.layer-shell-qt;
+          };
+        })
+      ];
     in
     {
       # configuration name matches hostname, so this system is chosen by default

@@ -51,7 +51,8 @@ let
     "NIX_LD_LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
     "PKG_CONFIG_PATH=${config.home.profileDirectory}/lib/nvim-depends/pkgconfig"
   ];
-in {
+in
+{
   home.packages = with pkgs; [
     patchelf
     nvim-depends-include
