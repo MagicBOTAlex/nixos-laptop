@@ -40,7 +40,7 @@
     enable = true;
     settings = {
       # device_name = "ITE Tech. Inc. ITE Device(8258) Keyboard";
-      device_name = "Chicony HP Business Slim Keyboard";
+      device_name = "ITE Tech. Inc. ITE Device(8258) Keyboard";
       remap = [
         {
           input = [ "KEY_LEFTALT" "KEY_LEFTCTRL" ];

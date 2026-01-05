@@ -28,10 +28,10 @@
     fsType = "ext4";
   };
 
-  fileSystems."/win" = {
-    device = "/dev/disk/by-partuuid/48327e1e-3a36-4a1b-897b-1f69bb8c1a1e";
-    fsType = "ntfs";
-  };
+  # fileSystems."/mnt/win" = {
+  #   device = "/dev/nvme0n1p2";
+  #   fsType = "ntfs";
+  # };
 
   # fileSystems."/mnt/monero" = {
   #   device = "/dev/nvme1n1p5";
@@ -40,11 +40,11 @@
 
 
 
-  swapDevices = [{
-    device = "/dev/nvme1n1p4";
-  }];
-  zramSwap.enable = true;
-  boot.resumeDevice = "/dev/nvme1n1p4";
+  # swapDevices = [{
+  #   device = "/dev/disk/by-uuid/48050ce2-110b-4ac8-b464-c15c7b4d4373";
+  # }];
+  # zramSwap.enable = true;
+  # boot.resumeDevice = "/dev/nvme1n1p4";
 
   powerManagement = {
     enable = true;

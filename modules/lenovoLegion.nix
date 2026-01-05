@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
   boot.extraModulePackages =
     [ config.boot.kernelPackages.lenovo-legion-module ];
-  environment.systemPackages = [ pkgs.lenovo-legion ];
+  environment.systemPackages = [ pkgs.lenovo-legion pkgs.dmidecode ];
 }

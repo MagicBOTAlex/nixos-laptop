@@ -14,6 +14,7 @@ in
         efiSupport = true;
         devices = [ "nodev" ]; # UEFI: don’t write to a disk MBR
         default = "0";
+        useOSProber = true;
       };
       boot.loader.efi.canTouchEfiVariables = true;
       boot.loader.efi.efiSysMountPoint = "/boot";

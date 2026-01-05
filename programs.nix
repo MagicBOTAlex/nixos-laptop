@@ -10,13 +10,13 @@
     ncdu
     screen
     nixfmt-tree
-    ffmpeg-full
+    ffmpeg
     kubectl
+    kiwix
 
     ### Desktop programs
     firefox
     wl-clipboard
-    discord
     killall
     bruno
     argocd
@@ -29,7 +29,8 @@
     ungoogled-chromium
     megasync
     inkscape
-    krita
+    # krita
+    signal-desktop-bin
     vtk
     filezilla
     # google-chrome

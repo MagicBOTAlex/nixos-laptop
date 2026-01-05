@@ -14,6 +14,7 @@ in
     ./modules/drivers/bluetooth.nix
     ./modules/lenovoLegion.nix
     ./modules/svelteSupport.nix
+    ./modules/ollama.nix
     #    ./networking/openvpn-work.nix
 
     # ./modules/crypto/mxr/mining.nix
@@ -26,6 +27,7 @@ in
     ./modules/spotify.nix
     # ./modules/freecad.nix
     ./modules/gparted.nix
+    ./modules/extendedDiscord.nix
 
     ./modules/fishShell.nix
     ./modules/pigz.nix
@@ -42,8 +44,25 @@ in
   ] ++ lib.optional (toggles.printing3D.enable or false)
     ./modules/printing3D.nix;
 
+  environment.homeBinInPath = true;
+
   nixpkgs.config.permittedInsecurePackages = [ ]
     ++ lib.optional (toggles.printing3D.enable or false) "libsoup-2.74.3";
+  # nix.settings = {
+  #   # download-attempts = 1;
+  #   # connect-timeout = 1;
+  #   substituters = [
+  #     "https://cache.nixos.org"
+  #     "https://nix-community.cachix.org"
+  #     "https://cache.deprived.dev"
+  #   ];
+  #   trusted-public-keys = [
+  #     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  #     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+  #     "cache.deprived.dev:B5o97KpSrgbN7OxZCLu0LQYxg+Bj0pB1WiKY5n0HfLY="
+  #   ];
+  # };
+  #
 
   nixpkgs.overlays = [
     (final: prev:

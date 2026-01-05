@@ -33,6 +33,7 @@
     };
 
     interactiveShellInit = ''
+      set -g fish_user_paths ~/bin $fish_user_paths
       function enter
         if test (count $argv) -lt 1
           echo "usage: enter <container-name-or-id>"
