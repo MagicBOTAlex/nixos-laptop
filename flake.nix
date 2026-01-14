@@ -54,7 +54,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
+            ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; environment.systemPackages = with pkgs; [ virtiofsd ]; })
             # import configuration
             (import ./configuration.nix flake-overlays)
             spicetify-nix.nixosModules.default

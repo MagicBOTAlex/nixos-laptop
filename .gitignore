@@ -1,2 +1,5 @@
 .env
 ./.env
+result/**
+**.sock
+**.img

@@ -1,0 +1,15 @@
+2026-01-14 14:07:16,227 INFO supervisord started with pid 87576
+2026-01-14 14:07:17,230 INFO spawned: 'notify' with pid 87579
+2026-01-14 14:07:17,231 INFO spawned: 'virtiofsd-ro-store' with pid 87580
+2026-01-14 14:07:17,242 WARN exited: virtiofsd-ro-store (exit status 1; not expected)
+2026-01-14 14:07:18,256 INFO success: notify entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2026-01-14 14:07:18,259 INFO spawned: 'virtiofsd-ro-store' with pid 87583
+2026-01-14 14:07:18,269 WARN exited: virtiofsd-ro-store (exit status 1; not expected)
+2026-01-14 14:07:20,273 INFO spawned: 'virtiofsd-ro-store' with pid 87588
+2026-01-14 14:07:20,283 WARN exited: virtiofsd-ro-store (exit status 1; not expected)
+2026-01-14 14:07:23,290 INFO spawned: 'virtiofsd-ro-store' with pid 87594
+2026-01-14 14:07:23,300 WARN exited: virtiofsd-ro-store (exit status 1; not expected)
+2026-01-14 14:07:23,300 INFO gave up: virtiofsd-ro-store entered FATAL state, too many start retries too quickly
+2026-01-14 14:07:33,313 WARN received SIGINT indicating exit request
+2026-01-14 14:07:33,314 INFO waiting for notify to die
+2026-01-14 14:07:34,316 WARN stopped: notify (terminated by SIGTERM)
