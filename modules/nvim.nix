@@ -60,6 +60,7 @@ in
     nvim-depends-pkgconfig
     ripgrep
   ];
+
   home.extraOutputsToInstall = [ "nvim-depends" ];
   home.shellAliases.nvim = (concatStringsSep " " buildEnv)
     + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so " + "nvim";
