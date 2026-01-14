@@ -31,7 +31,7 @@
 
     # Writable disk allocation
     volumes = [{
-      image = "kube-vm.img";
+      image = "/mnt/cloud/kube-vm/kube-vm.img";
       mountPoint = "/mnt/cloud/kube-vm";
       size = 512; # Size in MB
     }];
