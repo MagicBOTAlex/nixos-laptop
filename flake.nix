@@ -21,6 +21,12 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     minemouth.url = "github:nikp123/minecraft-plymouth-theme";
@@ -31,7 +37,7 @@
     };
   };
   outputs =
-    { self, nixpkgs-xr, spicetify-nix, nixpkgs, minemouth, ... }@inputs:
+    { self, nixpkgs-xr, spicetify-nix, nixpkgs, microvm, minemouth, ... }@inputs:
     let
       flake-overlays = [
         (final: prev: {
@@ -76,7 +82,9 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
+            microvm.nixosModules.microvm
             ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
+            ./vms/kube-vm/kube-vm.nix
           ];
         };
       };
