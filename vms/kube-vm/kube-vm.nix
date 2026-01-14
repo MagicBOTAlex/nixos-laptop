@@ -27,6 +27,7 @@
       mountPoint = "/nix/.ro-store";
       tag = "ro-store";
       proto = "virtiofs";
+      socketName = "nixos-virtiofs-ro-store.sock";
     }];
 
     # Writable disk allocation

@@ -54,10 +54,11 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; environment.systemPackages = with pkgs; [ virtiofsd ]; })
+            ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
             # import configuration
             (import ./configuration.nix flake-overlays)
             spicetify-nix.nixosModules.default
+            ./host/microvmSetup.nix
 
             # home manager part 2
             inputs.home-manager.nixosModules.default
