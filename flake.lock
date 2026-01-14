@@ -91,6 +91,27 @@
         "type": "github"
       }
     },
+    "microvm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "spectrum": "spectrum"
+      },
+      "locked": {
+        "lastModified": 1768085909,
+        "narHash": "sha256-VmLSHlimAq+em9rXX9YhBS0Shu5MBCAQi2Kd//8OOgQ=",
+        "owner": "astro",
+        "repo": "microvm.nix",
+        "rev": "4f267df275361406cda9a3f8e349035be207b307",
+        "type": "github"
+      },
+      "original": {
+        "owner": "astro",
+        "repo": "microvm.nix",
+        "type": "github"
+      }
+    },
     "minegrub-world-sel-theme": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -313,6 +334,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "microvm": "microvm",
         "minegrub-world-sel-theme": "minegrub-world-sel-theme",
         "minemouth": "minemouth",
         "minesddm": "minesddm",
@@ -321,6 +343,22 @@
         "nixpkgs-xr": "nixpkgs-xr",
         "plasma-manager": "plasma-manager",
         "spicetify-nix": "spicetify-nix"
+      }
+    },
+    "spectrum": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759482047,
+        "narHash": "sha256-H1wiXRQHxxPyMMlP39ce3ROKCwI5/tUn36P8x6dFiiQ=",
+        "ref": "refs/heads/main",
+        "rev": "c5d5786d3dc938af0b279c542d1e43bce381b4b9",
+        "revCount": 996,
+        "type": "git",
+        "url": "https://spectrum-os.org/git/spectrum"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://spectrum-os.org/git/spectrum"
       }
     },
     "spicetify-nix": {

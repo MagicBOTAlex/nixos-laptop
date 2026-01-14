@@ -6,7 +6,7 @@
     settings.PermitEmptyPasswords = "yes";
   };
   imports = [ ./../../modules/getNvim.nix ];
-  environment.systemPackages = [ neovim git wget curl busybox ];
+  environment.systemPackages = with pkgs; [ neovim git wget curl busybox ];
 
   # --- MicroVM Specific Settings ---
   microvm = {
