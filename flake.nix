@@ -43,33 +43,42 @@
     in
     {
       # configuration name matches hostname, so this system is chosen by default
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        # pass along all the inputs and stuff to the system function
-        specialArgs = { inherit inputs; };
-        modules = [
-          ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
-          # import configuration
-          (import ./configuration.nix flake-overlays)
-          spicetify-nix.nixosModules.default
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
+            # import configuration
+            (import ./configuration.nix flake-overlays)
+            spicetify-nix.nixosModules.default
 
-          # home manager part 2
-          inputs.home-manager.nixosModules.default
+            # home manager part 2
+            inputs.home-manager.nixosModules.default
 
-          inputs.minesddm.nixosModules.default
-          inputs.minegrub-world-sel-theme.nixosModules.default
+            inputs.minesddm.nixosModules.default
+            inputs.minegrub-world-sel-theme.nixosModules.default
 
-          {
-            home-manager.sharedModules =
-              [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
-          }
+            {
+              home-manager.sharedModules =
+                [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+            }
 
-          inputs.nix-index-database.nixosModules.nix-index
+            inputs.nix-index-database.nixosModules.nix-index
 
-          nixpkgs-xr.nixosModules.nixpkgs-xr
+            nixpkgs-xr.nixosModules.nixpkgs-xr
 
-          { programs.nix-index-database.comma.enable = true; }
-        ];
+            { programs.nix-index-database.comma.enable = true; }
+          ];
+        };
+
+        kube-vm = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
+          ];
+        };
       };
     };
 }

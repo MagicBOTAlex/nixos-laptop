@@ -3,7 +3,7 @@
     enable = true;
 
     shellAliases = {
-      nrb = "sudo nixos-rebuild switch --flake /etc/nixos --impure  --fallback";
+      nrb = "power 1 && sudo nixos-rebuild switch --flake /etc/nixos --impure  --fallback";
       nrbr = "nrb && sudo reboot -f";
       ni = "nvim /etc/nixos/configuration.nix";
       bat =
@@ -47,6 +47,36 @@
             return 1
         end
         nix edit "nixpkgs#$argv[1]"
+      end
+      function power
+        # Check if an argument was provided
+        if test (count $argv) -eq 0
+            echo "Usage: power [0|-1|1]"
+            return 1
+        end
+
+        set mode $argv[1]
+
+        switch $mode
+            case 0
+                # Normal: Empty for now
+                echo "Normal mode selected (placeholder)"
+            case -1
+                # Powersave: Disable boost
+                echo "Switching to Powersave (Boost Disabled)..."
+                echo 0 | sudo tee /sys/devices/system/cpu/cpufreq/policy*/boost > /dev/null
+                sudo cpupower frequency-set -u 0.1GHz
+                powerprofilesctl set power-saver
+            case 1
+                # Boost: Enable boost
+                echo "Switching to Boost (Boost Enabled)..."
+                echo 1 | sudo tee /sys/devices/system/cpu/cpufreq/policy*/boost > /dev/null
+                sudo cpupower frequency-set -u 6GHz
+                powerprofilesctl set performance
+            case '*'
+                echo "Invalid mode. Use 0 (Normal), 1 (Powersave), or 2 (Boost)."
+                return 1
+          end
       end
       function plasma-check
         set -l before (mktemp -t rc2nix_before.XXXXXX)

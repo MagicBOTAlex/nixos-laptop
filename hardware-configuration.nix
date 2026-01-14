@@ -28,6 +28,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/cloud" = {
+    device = "/dev/disk/by-uuid/bb8536ba-cc86-4f73-ba68-0480cfced2d8";
+    fsType = "ext4";
+  };
+
   # fileSystems."/mnt/win" = {
   #   device = "/dev/nvme0n1p2";
   #   fsType = "ntfs";

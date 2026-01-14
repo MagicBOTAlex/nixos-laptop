@@ -117,6 +117,8 @@ in
   home.packages = with pkgs; [
     qalculate-qt
     inputs.plasma-manager.packages.${pkgs.system}.rc2nix
+    xdg-desktop-portal
+    kdePackages.xdg-desktop-portal-kde
   ];
 
   home.file.".config/kwalletrc".text = ''

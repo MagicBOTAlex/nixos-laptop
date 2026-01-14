@@ -16,7 +16,7 @@
 
 
   discord = {
-    limit = true;
+    limit = false;
     extended = false;
     allowedTime = 180;
   };

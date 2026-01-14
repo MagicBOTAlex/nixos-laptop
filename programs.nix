@@ -18,6 +18,7 @@
     firefox
     wl-clipboard
     killall
+    kicad
     bruno
     argocd
     go
