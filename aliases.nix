@@ -24,6 +24,8 @@
       workssh = "ssh zhen@188.245.106.241";
       desk = "ssh botmain@gitea.deprived.dev -p 226";
       r = "nix run";
+      snorre = "ssh bot@spoodythe.one";
+
 
       fe = "nix develop";
       fed = "nvim flake.nix";

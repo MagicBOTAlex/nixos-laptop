@@ -1,5 +1,4 @@
 flake-overlays:
-
 { config, pkgs, lib, inputs, minecraft-plymouth-theme, ... }:
 let toggles = import ./toggles.nix;
 in
@@ -16,6 +15,7 @@ in
     ./modules/svelteSupport.nix
     ./modules/ollama.nix
     #    ./networking/openvpn-work.nix
+    ./vms/kube-vm/kube-vm.nix
 
     # ./modules/crypto/mxr/mining.nix
 
@@ -159,6 +159,7 @@ in
       };
     };
   };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

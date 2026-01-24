@@ -19,6 +19,7 @@
     wl-clipboard
     killall
     kicad
+    pinta
     bruno
     argocd
     go

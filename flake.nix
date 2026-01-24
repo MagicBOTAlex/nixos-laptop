@@ -58,6 +58,8 @@
             # import configuration
             (import ./configuration.nix flake-overlays)
             spicetify-nix.nixosModules.default
+
+            inputs.microvm.nixosModules.host
             ./host/microvmSetup.nix
 
             # home manager part 2
@@ -79,15 +81,15 @@
           ];
         };
 
-        kube-vm = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            microvm.nixosModules.microvm
-            ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
-            ./vms/kube-vm/kube-vm.nix
-          ];
-        };
+        # kube-vm = nixpkgs.lib.nixosSystem {
+        #   system = "x86_64-linux";
+        #   specialArgs = { inherit inputs; };
+        #   modules = [
+        #     microvm.nixosModules.microvm
+        #     ({ config, pkgs, ... }: { nixpkgs.config.allowUnfree = true; })
+        #     ./vms/kube-vm/kube-vm.nix
+        #   ];
+        # };
       };
     };
 }
