@@ -16,6 +16,13 @@ let
       url = "https://guide-assets.appliedenergistics.org/minecraft-1.20.1/ae2/items-blocks-machines/controller_blockimage1.Lm3T9bFApBbY.png";
       hash = "sha256-hWMAFN1UWqaiISr7+5vDzM7vLcCIXiOk1+K6rqXEu2E=";
     };
+  jukeboxIcon = pkgs.fetchurl {
+    name = "spotify-custom-icon.png";
+    url = "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ee/Jukebox_JE2_BE2.png/revision/latest?cb=20201202075007";
+    # Run 'nix build', get the hash, and paste it here
+    hash = "sha256-V/9vAV3Ln1gyDGmkBkRGieOfdsnLyMk1OrYJh27dMSc=";
+  };
+
 in
 {
   nixpkgs.overlays = [
@@ -26,6 +33,12 @@ in
           sed -i "s|^Icon=.*|Icon=${compassIcon}|" $out/share/applications/firefox.desktop
         '';
       });
+      spotify = prev.spotify.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          sed -i 's|^Icon=.*|Icon=${jukeboxIcon}|' $out/share/applications/spotify.desktop
+        '';
+      });
+
       vscodium = prev.vscodium.overrideAttrs (old: {
         # We use postInstall to append to the existing installation logic
         postInstall = (old.postInstall or "") + ''
