@@ -3,6 +3,7 @@
     # get pinned version of nixpkgs. update with `nix flake update nixpkgs` or `nix flake update` for all inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     # home manager
     home-manager = {
@@ -37,7 +38,7 @@
     };
   };
   outputs =
-    { self, nixpkgs-xr, spicetify-nix, nixpkgs, microvm, minemouth, ... }@inputs:
+    { self, nixpkgs-xr, vscode-server, spicetify-nix, nixpkgs, microvm, minemouth, ... }@inputs:
     let
       flake-overlays = [
         (final: prev: {
@@ -60,7 +61,7 @@
             spicetify-nix.nixosModules.default
 
             inputs.microvm.nixosModules.host
-            ./host/microvmSetup.nix
+            # ./host/microvmSetup.nix
 
             # home manager part 2
             inputs.home-manager.nixosModules.default
@@ -70,10 +71,14 @@
 
             {
               home-manager.sharedModules =
-                [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+                [ inputs.plasma-manager.homeModules.plasma-manager ];
             }
 
             inputs.nix-index-database.nixosModules.nix-index
+            vscode-server.nixosModules.default
+            ({ config, pkgs, ... }: {
+              services.vscode-server.enable = true;
+            })
 
             nixpkgs-xr.nixosModules.nixpkgs-xr
 

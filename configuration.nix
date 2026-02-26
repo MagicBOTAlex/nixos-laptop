@@ -15,13 +15,17 @@ in
     ./modules/svelteSupport.nix
     ./modules/ollama.nix
     #    ./networking/openvpn-work.nix
-    ./vms/kube-vm/kube-vm.nix
+    # ./vms/kube-vm/kube-vm.nix
 
     # ./modules/crypto/mxr/mining.nix
 
+    ./modules/openrgb.nix
+    ./modules/audio/sender-udp.nix
+    # ./modules/audio/sender.nix
     ./programs.nix
     ./modules/python.nix
     ./modules/nodejs.nix
+    ./modules/mineIcons.nix
     # ./modules/vr.nix
     #    ./modules/steam.nix
     ./modules/spotify.nix
@@ -187,6 +191,7 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+  #test
 
 }
 

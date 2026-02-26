@@ -1,5 +1,5 @@
-{pkgs, ...} : {
-  virtualisation.docker.enable = true;
+{ pkgs, ... }: {
+  virtualisation.podman.enable = true;
 
   hardware.nvidia-container-toolkit.enable = true;
 }

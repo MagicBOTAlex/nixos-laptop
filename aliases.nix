@@ -3,7 +3,7 @@
     enable = true;
 
     shellAliases = {
-      nrb = "power 1 && sudo nixos-rebuild switch --flake /etc/nixos --impure  --fallback";
+      nrb = " sudo nixos-rebuild switch --flake /etc/nixos --impure  --fallback";
       nrbr = "nrb && sudo reboot -f";
       ni = "nvim /etc/nixos/configuration.nix";
       bat =

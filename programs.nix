@@ -20,6 +20,7 @@
     killall
     kicad
     pinta
+    arduino-ide
     bruno
     argocd
     go
@@ -49,6 +50,11 @@
     toybox
     gitoxide
 
+    vscodium-fhs
+    texliveFull
+    (pkgs.writeShellScriptBin "code" ''
+      exec ${pkgs.vscodium}/bin/codium "$@"
+    '')
   ];
 
   nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];

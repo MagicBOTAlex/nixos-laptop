@@ -59,6 +59,7 @@ in
     nvim-depends-library
     nvim-depends-pkgconfig
     ripgrep
+    markdownlint-cli2
   ];
 
   home.extraOutputsToInstall = [ "nvim-depends" ];

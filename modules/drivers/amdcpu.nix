@@ -14,7 +14,7 @@
 
   # Graphics
   services.xserver.videoDrivers = [ "amdgpu" ];
-  hardware.opengl = { enable = true; };
+  hardware.graphics = { enable = true; };
 
   # Monitoring tools
   environment.systemPackages = with pkgs; [

@@ -1,7 +1,7 @@
 {
   wezterm.enable = true; # baller
   printing3D.enable = false;
-  vscode.enable = true;
+  vscode.enable = false;
 
   mineboot.enable = true;
 
