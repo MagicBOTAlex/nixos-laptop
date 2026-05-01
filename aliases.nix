@@ -31,6 +31,7 @@
       fed = "nvim flake.nix";
       cdn = "cd /etc/nixos";
       yaaumma-server = "ssh zhen@188.245.106.241";
+            metal = "ssh metal@192.168.50.59";
 
     };
 

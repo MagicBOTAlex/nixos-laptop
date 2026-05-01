@@ -21,6 +21,8 @@
     kicad
     pinta
     arduino-ide
+    arduino-cli
+    wireguard-tools
     bruno
     argocd
     go

@@ -6,7 +6,7 @@
   mineboot.enable = true;
 
   # neverSleep.enable = true;
-  kernel.useCachyOS = true;
+  kernel.useCachyOS = false;
   boot = {
     mineboot.enable = true;
   };

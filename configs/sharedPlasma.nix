@@ -111,6 +111,9 @@ in
       "klaunchrc"."FeedbackStyle"."BusyCursor" = false;
       "klaunchrc"."FeedbackStyle"."TaskbarButton" = false;
       "kscreenlockerrc"."Daemon"."RequirePassword" = true;
+      "kcminputrc"."Keyboard"."RepeatRate" = 128;
+      "kcminputrc"."Keyboard"."RepeatDelay" = 300;
+
     };
   };
 

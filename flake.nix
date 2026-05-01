@@ -4,6 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+    flatpaks.url = "github:in-a-dil-emma/declarative-flatpak/latest";
 
     # home manager
     home-manager = {
@@ -38,7 +39,7 @@
     };
   };
   outputs =
-    { self, nixpkgs-xr, vscode-server, spicetify-nix, nixpkgs, microvm, minemouth, ... }@inputs:
+    { self, flatpaks, nixpkgs-xr, vscode-server, spicetify-nix, nixpkgs, microvm, minemouth, ... }@inputs:
     let
       flake-overlays = [
         (final: prev: {
@@ -81,6 +82,7 @@
             })
 
             nixpkgs-xr.nixosModules.nixpkgs-xr
+            inputs.flatpaks.nixosModules.default
 
             { programs.nix-index-database.comma.enable = true; }
           ];

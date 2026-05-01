@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     nodejs_22
-    nodePackages.serve
+    serve
 
     yarn
   ];
