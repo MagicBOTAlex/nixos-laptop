@@ -3,6 +3,6 @@
 
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "zhen@deprived.dev";
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
 }

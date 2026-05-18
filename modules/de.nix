@@ -67,7 +67,7 @@
     };
   };
   environment.etc."evremap-bluetooth.toml".text = ''
-    device_name = "K65 PLUS BLE3 Keyboard"
+    device_name = "K65 PLUS BLE2 Keyboard"
 
     [[remap]]
     input = ["KEY_LEFTALT", "KEY_LEFTCTRL"]

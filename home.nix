@@ -3,7 +3,7 @@ let toggles = import ./toggles.nix;
 in
 {
   imports = [
-    ./modules/nvim.nix
+    # ./modules/nvim.nix
     ./configs/plasma6.nix
     ./configs/sharedPlasma.nix
     ./homeModules/btop.nix

@@ -35,7 +35,7 @@
     megasync
     inkscape
     # krita
-    signal-desktop-bin
+    signal-desktop
     vtk
     filezilla
     # google-chrome
@@ -51,6 +51,8 @@
     haruna
     toybox
     gitoxide
+
+    libGL
 
     vscodium-fhs
     texliveFull

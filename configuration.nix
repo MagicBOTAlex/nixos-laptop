@@ -13,6 +13,8 @@ in
     ./modules/drivers/bluetooth.nix
     ./modules/lenovoLegion.nix
     ./modules/svelteSupport.nix
+    ./modules/nvim.nix
+
     ./modules/ollama.nix
     #    ./networking/openvpn-work.nix
     # ./vms/kube-vm/kube-vm.nix
@@ -145,7 +147,9 @@ in
   # Root uses the exact same module
   home-manager.users.root = { pkgs, ... }: {
     home.stateVersion = "24.05";
-    imports = [ ./modules/nvim.nix ];
+    imports = [
+      # ./modules/nvim.nix 
+    ];
   };
 
   # Configure console keymap

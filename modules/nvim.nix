@@ -43,55 +43,70 @@ let
     extraPrefix = "/lib/nvim-depends/pkgconfig";
     ignoreCollisions = true;
   };
-  buildEnv = [
-    "CPATH=${config.home.profileDirectory}/lib/nvim-depends/include"
-    "CPLUS_INCLUDE_PATH=${config.home.profileDirectory}/lib/nvim-depends/include/c++/v1"
-    "LD_LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
-    "LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
-    "NIX_LD_LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
-    "PKG_CONFIG_PATH=${config.home.profileDirectory}/lib/nvim-depends/pkgconfig"
-  ];
+  # buildEnv = [
+  #   "CPATH=${config.home.profileDirectory}/lib/nvim-depends/include"
+  #   "CPLUS_INCLUDE_PATH=${config.home.profileDirectory}/lib/nvim-depends/include/c++/v1"
+  #   "LD_LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
+  #   "LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
+  #   "NIX_LD_LIBRARY_PATH=${config.home.profileDirectory}/lib/nvim-depends/lib"
+  #   "PKG_CONFIG_PATH=${config.home.profileDirectory}/lib/nvim-depends/pkgconfig"
+  # ];
 in
 {
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     patchelf
     nvim-depends-include
     nvim-depends-library
     nvim-depends-pkgconfig
     ripgrep
     markdownlint-cli2
+    doq
+    sqlite
+    cargo
+    clang
+    cmake
+    gcc
+    gnumake
+    ninja
+    pkg-config
+    yarn
+    texlivePackages.latex
+    tree-sitter
+    fd
+    neovim
+
   ];
 
-  home.extraOutputsToInstall = [ "nvim-depends" ];
-  home.shellAliases.nvim = (concatStringsSep " " buildEnv)
-    + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so " + "nvim";
+  # home.extraOutputsToInstall = [ "nvim-depends" ];
+  # home.shellAliases.nvim = (concatStringsSep " " buildEnv)
+  #   + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so " + "nvim";
 
-  programs.neovim = {
-    enable = true;
-    package = pkgs.neovim-unwrapped;
-
-    withNodeJs = true;
-    withPython3 = true;
-    withRuby = true;
-
-    extraPackages = with pkgs; [
-      doq
-      sqlite
-      cargo
-      clang
-      cmake
-      gcc
-      gnumake
-      ninja
-      pkg-config
-      yarn
-      texlivePackages.latex
-      tree-sitter
-      fd
-    ];
-
-    extraLuaPackages = ls: with ls; [ luarocks ];
-  };
+  # programs.neovim = {
+  #   enable = true;
+  #   package = pkgs.neovim-unwrapped;
+  #
+  #   withNodeJs = true;
+  #   withPython3 = true;
+  #   withRuby = true;
+  #
+  #   extraPackages = with pkgs; [
+  #     doq
+  #     sqlite
+  #     cargo
+  #     clang
+  #     cmake
+  #     gcc
+  #     gnumake
+  #     ninja
+  #     pkg-config
+  #     yarn
+  #     texlivePackages.latex
+  #     tree-sitter
+  #     fd
+  #   ];
+  #
+  #   extraLuaPackages = ls: with ls; [ luarocks ];
+  # };
 
   # # Screw declarative here
   # xdg.configFile."nvim".source = builtins.fetchGit {

@@ -12,7 +12,7 @@ in
 {
   programs.wezterm = {
     enable = true;
-    # Do not override 'package' here unless you build a full custom derivation.
+    package = pkgs.wezterm;
 
     extraConfig = ''
       local wezterm = require "wezterm"
