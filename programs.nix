@@ -3,6 +3,8 @@
     neovim
     wget
     iproute2
+    cheese
+    pv
     curl
     fastfetch
     tree

@@ -23,10 +23,10 @@
     options = [ "fmask=0077" "dmask=0077" ];
   };
 
-  fileSystems."/mint" = {
-    device = "/dev/disk/by-partuuid/a0450884-11e2-4db3-9cfd-e2735ef8eb5e";
-    fsType = "ext4";
-  };
+  # fileSystems."/mint" = {
+  #   device = "/dev/disk/by-partuuid/a0450884-11e2-4db3-9cfd-e2735ef8eb5e";
+  #   fsType = "ext4";
+  # };
 
   fileSystems."/mnt/cloud" = {
     device = "/dev/disk/by-uuid/bb8536ba-cc86-4f73-ba68-0480cfced2d8";

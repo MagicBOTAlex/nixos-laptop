@@ -16,7 +16,6 @@ in
     ./modules/nvim.nix
 
     ./modules/ollama.nix
-    #    ./networking/openvpn-work.nix
     # ./vms/kube-vm/kube-vm.nix
 
     # ./modules/crypto/mxr/mining.nix
@@ -24,7 +23,7 @@ in
     ./modules/gitFakeUsers.nix
 
     ./modules/openrgb.nix
-    ./modules/audio/sender-udp.nix
+    # ./modules/audio/sender-udp.nix
     # ./modules/audio/sender.nix
     ./programs.nix
     ./modules/python.nix
