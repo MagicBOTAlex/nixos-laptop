@@ -13,7 +13,7 @@ in
     ./modules/drivers/bluetooth.nix
     ./modules/lenovoLegion.nix
     ./modules/svelteSupport.nix
-    ./modules/nvim.nix
+    ./modules/nvim-packages.nix
 
     ./modules/ollama.nix
     # ./vms/kube-vm/kube-vm.nix
