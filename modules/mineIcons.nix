@@ -36,6 +36,17 @@ let
     url = "https://deprived.dev/assets/zhen/nixos/Beacon.png";
     hash = "sha256-K06YsB5qV+sJJnh51umBXgP4wHQ+aZGvuXs5+Imb5/Y=";
   };
+  printerIcon = pkgs.fetchurl {
+    name = "3DPrinterOC.png";
+    url = "https://deprived.dev/assets/zhen/nixos/3DPrinterOC.png";
+    hash = "sha256-nJGy/nq/a6HN29oNcT9ghpwvbDTbJYqsouJevK/xFec=";
+  };
+  copperBlock = pkgs.fetchurl {
+    name = "blockOfCopper.png";
+    url = "https://deprived.dev/assets/zhen/nixos/blockOfCopper.png";
+    hash = "sha256-ZrUVW3BtlcI1jEFNlXPp7vJ+cMyTJTDLZzEOPMuw8ns=";
+  };
+
 in
 {
   nixpkgs.overlays = [
@@ -49,6 +60,11 @@ in
       spotify = prev.spotify.overrideAttrs (old: {
         postInstall = (old.postInstall or "") + ''
           sed -i 's|^Icon=.*|Icon=${jukeboxIcon}|' $out/share/applications/spotify.desktop
+        '';
+      });
+      blender = prev.blender.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          sed -i 's|^Icon=.*|Icon=${copperBlock}|' $out/share/applications/blender.desktop
         '';
       });
       steam = prev.steam.override {
@@ -129,6 +145,5 @@ in
     })
   ];
 
-  # environment.systemPackages = with pkgs; [ discord ];
+  # environment.systemPackages = with pkgs; [ orcaSlicerDesktop ];
 }
-

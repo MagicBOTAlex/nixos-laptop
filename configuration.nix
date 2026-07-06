@@ -14,6 +14,7 @@ in
     ./modules/lenovoLegion.nix
     ./modules/svelteSupport.nix
     ./modules/nvim-packages.nix
+    ./modules/blender.nix
 
     ./modules/ollama.nix
     # ./vms/kube-vm/kube-vm.nix
@@ -35,6 +36,8 @@ in
     ./modules/spotify.nix
     # ./modules/freecad.nix
     ./modules/gparted.nix
+    ./modules/smb.nix
+    ./ports.nix
     ./modules/extendedDiscord.nix
 
     ./modules/fishShell.nix
