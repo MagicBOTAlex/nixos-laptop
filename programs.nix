@@ -15,9 +15,6 @@
     ffmpeg
     kubectl
     kiwix
-    tree-sitter
-    clang
-    gcc
     unzip
 
     ### Desktop programs
