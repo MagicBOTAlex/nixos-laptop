@@ -8,5 +8,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ freecad-wayland ];
+  # environment.systemPackages = with pkgs; [ freecad-wayland ];
 }

@@ -16,6 +16,7 @@
     kubectl
     kiwix
     unzip
+    kdePackages.kdenlive
 
     ### Desktop programs
     firefox
@@ -39,10 +40,10 @@
     inkscape
     # krita
     signal-desktop
-    vtk
     filezilla
     # google-chrome
     wine-wayland
+    dig
 
     libreoffice-fresh
     hunspell

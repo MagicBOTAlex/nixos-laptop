@@ -1,6 +1,11 @@
 # https://nix-community.github.io/plasma-manager/options.xhtml
 
-{ pkgs, inputs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 let
   toggles = import ./../toggles.nix;
   term = if (toggles.wezterm.enable or false) then "wezterm" else "konsole";
@@ -31,8 +36,7 @@ in
       powerButtonAction = "shutDown";
     };
 
-    session.sessionRestore.restoreOpenApplicationsOnLogin =
-      "startWithEmptySession";
+    session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
 
     # Shortcuts =====================================
     hotkeys.commands = {
@@ -91,7 +95,9 @@ in
     shortcuts = {
       plasmashell."activate application launcher" = "Meta+S";
       plasmashell."kill window" = "Shift+Alt+F4";
-      kwin = { "Window Maximize" = "Meta+Up"; };
+      kwin = {
+        "Window Maximize" = "Meta+Up";
+      };
       "services/systemsettings.desktop"."_launch" = [ ];
     };
 
@@ -102,8 +108,7 @@ in
       "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
       # Fuck the hot corner thingy that makes overview
       "kwinrc"."Effect-overview"."BorderActivate" = 9;
-      "kdeglobals"."General"."fixed" =
-        "CozetteVector-nerd,10,-1,5,500,0,0,0,0,0,0,0,0,0,0,1,nerd";
+      "kdeglobals"."General"."fixed" = "CozetteVector-nerd,10,-1,5,500,0,0,0,0,0,0,0,0,0,0,1,nerd";
       "kdeglobals"."General"."TerminalApplication" = "wezterm start --cwd .";
       "kdeglobals"."General"."TerminalService" = "org.wezfurlong.wezterm.desktop";
       "kdeglobals"."Shortcuts"."OpenContextMenu" = "Shift+F10";
@@ -113,6 +118,9 @@ in
       "kscreenlockerrc"."Daemon"."RequirePassword" = true;
       "kcminputrc"."Keyboard"."RepeatRate" = 128;
       "kcminputrc"."Keyboard"."RepeatDelay" = 300;
+      kxkbrc.Layout.LayoutList = "dk";
+      kxkbrc.Layout.Use = true;
+      kxkbrc.Layout.VariantList = "nodeadkeys";
 
     };
   };

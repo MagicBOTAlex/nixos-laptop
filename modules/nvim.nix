@@ -115,6 +115,7 @@ in
     # extraLuaPackages = ls: with ls;
     #   [ luarocks pkgs.vimPlugins.nvim-treesitter-textobjects ];
   };
+  xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
   # Screw declarative here
   # xdg.configFile."nvim".source = builtins.fetchGit {

@@ -3,7 +3,16 @@
     botlap = {
       isNormalUser = true;
       description = "botlap";
-      extraGroups = [ "projects" "networkmanager" "wheel" "docker" "udev" "uucp" "dialout" ];
+      extraGroups = [
+        "projects"
+        "networkmanager"
+        "wheel"
+        "docker"
+        "udev"
+        "uucp"
+        "dialout"
+        "clash"
+      ];
 
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAhiPhFbCi64NduuV794omgS8mctBLXtqxbaEJyUo6lg botalex@DESKTOPSKTOP-ENDVV0V"

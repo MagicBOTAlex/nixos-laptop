@@ -47,7 +47,11 @@
 
   swapDevices = [{
     device = "/dev/disk/by-uuid/707762c8-79f8-454f-a9b8-836a488e8db8";
-  }];
+  }
+    #   {
+    #     device = "/dev/disk/by-uuid/b817bb61-1008-4bc2-a619-95546894c7c8";
+    # }
+  ];
   zramSwap.enable = true;
   # boot.resumeDevice = "/dev/nvme1n1p4";
 

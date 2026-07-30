@@ -14,9 +14,9 @@ in
     ./modules/lenovoLegion.nix
     ./modules/svelteSupport.nix
     ./modules/nvim-packages.nix
-    ./modules/blender.nix
+    # ./modules/blender.nix
 
-    ./modules/ollama.nix
+    # ./modules/ollama.nix
     # ./vms/kube-vm/kube-vm.nix
 
     # ./modules/crypto/mxr/mining.nix
@@ -42,6 +42,7 @@ in
 
     ./modules/fishShell.nix
     ./modules/pigz.nix
+    ./modules/clashVerge.nix
 
     ./users.nix
     ./modules/de.nix
@@ -76,10 +77,20 @@ in
   #
 
   nixpkgs.overlays = [
-    (final: prev:
-      {
-        # Your own overlays...
-      })
+    (self: super: {
+      pdal = super.pdal.overrideAttrs (oldAttrs: rec {
+        version = "2.10.2";
+
+        src = super.fetchFromGitHub {
+          owner = "PDAL";
+          repo = "PDAL";
+          tag = version;
+          hash = "sha256-VxELHAiiFMKjsvgBK4Cm6YJSrs/4QhhF1haZv4/FlZg=";
+        };
+
+        doCheck = false;
+      });
+    })
   ] ++ flake-overlays;
   environment.systemPackages = with pkgs; [ ];
 
