@@ -44,6 +44,9 @@
     # google-chrome
     wine-wayland
     dig
+    alsa-utils
+    alsa-tools
+    pulseaudioFull
 
     libreoffice-fresh
     hunspell

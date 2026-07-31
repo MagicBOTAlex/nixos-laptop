@@ -1,6 +1,14 @@
 flake-overlays:
-{ config, pkgs, lib, inputs, minecraft-plymouth-theme, ... }:
-let toggles = import ./toggles.nix;
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  minecraft-plymouth-theme,
+  ...
+}:
+let
+  toggles = import ./toggles.nix;
 in
 {
   imports = [
@@ -16,7 +24,7 @@ in
     ./modules/nvim-packages.nix
     # ./modules/blender.nix
 
-    # ./modules/ollama.nix
+    ./modules/ollama.nix
     # ./vms/kube-vm/kube-vm.nix
 
     # ./modules/crypto/mxr/mining.nix
@@ -53,13 +61,13 @@ in
     # Do not disable under here =========================== Disable in toggles.nix
     ./modules/keyboardMouse.nix
     ./modules/bootOptions.nix
-  ] ++ lib.optional (toggles.printing3D.enable or false)
-    ./modules/printing3D.nix;
+  ]
+  ++ lib.optional (toggles.printing3D.enable or false) ./modules/printing3D.nix;
 
   environment.homeBinInPath = true;
 
-  nixpkgs.config.permittedInsecurePackages = [ ]
-    ++ lib.optional (toggles.printing3D.enable or false) "libsoup-2.74.3";
+  nixpkgs.config.permittedInsecurePackages =
+    [ ] ++ lib.optional (toggles.printing3D.enable or false) "libsoup-2.74.3";
   # nix.settings = {
   #   # download-attempts = 1;
   #   # connect-timeout = 1;
@@ -91,7 +99,8 @@ in
         doCheck = false;
       });
     })
-  ] ++ flake-overlays;
+  ]
+  ++ flake-overlays;
   environment.systemPackages = with pkgs; [ ];
 
   # nix.settings = {
@@ -133,11 +142,17 @@ in
     settings = {
       nix-path = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
       flake-registry = ""; # optional, ensures flakes are truly self-contained
-      experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "pipe-operators"
+      ];
     };
   };
 
-  services.openssh = { enable = true; };
+  services.openssh = {
+    enable = true;
+  };
   systemd.services.sshd = {
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
@@ -154,14 +169,16 @@ in
   home-manager = {
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs; };
-    users = { "botlap" = import ./home.nix; };
+    users = {
+      "botlap" = import ./home.nix;
+    };
   };
 
   # Root uses the exact same module
   home-manager.users.root = { pkgs, ... }: {
     home.stateVersion = "24.05";
     imports = [
-      # ./modules/nvim.nix 
+      # ./modules/nvim.nix
     ];
   };
 
@@ -183,7 +200,6 @@ in
       };
     };
   };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -214,4 +230,3 @@ in
   #test
 
 }
-
