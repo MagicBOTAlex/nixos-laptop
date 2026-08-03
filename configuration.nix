@@ -25,6 +25,7 @@ in
     # ./modules/blender.nix
 
     ./modules/ollama.nix
+    ./modules/mosh.nix
     # ./vms/kube-vm/kube-vm.nix
 
     # ./modules/crypto/mxr/mining.nix

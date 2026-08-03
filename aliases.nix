@@ -6,8 +6,7 @@
       nrb = " sudo nixos-rebuild switch --flake /etc/nixos --impure  --fallback";
       nrbr = "nrb && sudo reboot -f";
       ni = "nvim /etc/nixos/configuration.nix";
-      bat =
-        "upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E 'state|percentage'";
+      bat = "upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E 'state|percentage'";
       gpu = "nvidia-smi -q | grep -i 'draw.*W'";
       wifi = "sudo nmtui";
       all = "sudo chmod -R a+rwx ./*";
@@ -16,7 +15,7 @@
       pubkey = "cat ~/.ssh/id_ed25519.pub | wl-copy";
       up = "docker compose up -d";
       down = "docker compose down";
-      server = "ssh botserver@gitea.deprived.dev -p 224";
+      server = "mosh botserver@gitea.deprived.dev -p 224";
       main = "ssh botmain@192.168.50.58";
       vpnup = "systemctl start openvpn-work.service";
       vpndown = "systemctl down openvpn-work.service";
@@ -26,12 +25,11 @@
       r = "nix run";
       snorre = "ssh bot@spoodythe.one";
 
-
       fe = "nix develop";
       fed = "nvim flake.nix";
       cdn = "cd /etc/nixos";
       yaaumma-server = "ssh zhen@188.245.106.241";
-            metal = "ssh metal@192.168.50.59";
+      metal = "ssh metal@192.168.50.59";
 
     };
 
