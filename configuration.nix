@@ -26,6 +26,7 @@ in
 
     ./modules/ollama.nix
     ./modules/mosh.nix
+    ./modules/chineseInput.nix
     # ./vms/kube-vm/kube-vm.nix
 
     # ./modules/crypto/mxr/mining.nix

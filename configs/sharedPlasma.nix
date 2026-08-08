@@ -118,9 +118,14 @@ in
       "kscreenlockerrc"."Daemon"."RequirePassword" = true;
       "kcminputrc"."Keyboard"."RepeatRate" = 128;
       "kcminputrc"."Keyboard"."RepeatDelay" = 300;
-      kxkbrc.Layout.LayoutList = "dk";
       kxkbrc.Layout.Use = true;
       kxkbrc.Layout.VariantList = "nodeadkeys";
+      "klipperrc"."General"."IgnoreImages" = false;
+      "klipperrc"."General"."MaxClipItems" = 200;
+      "kxkbrc"."Layout"."DisplayNames" = ",";
+      "kxkbrc"."Layout"."LayoutList" = "dk,cn";
+      "kwinrc"."Wayland"."InputMethod" =
+        "/run/current-system/sw/share/applications/fcitx5-wayland-launcher.desktop";
 
     };
   };

@@ -4,6 +4,7 @@
     group = "clash";
     tunMode = true;
     serviceMode = true;
+    autoStart = true;
   };
 
   users.groups.clash = { };
