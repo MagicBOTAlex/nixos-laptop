@@ -1,0 +1,37 @@
+--- a/src/interface/Options.cpp
++++ b/src/interface/Options.cpp
+@@ -42,7 +42,7 @@ static unsigned int register_interface_options()
+ 		{ "Cache directory", L"", option_flags::predefined_priority | option_flags::platform },
+ 
+ 		// Normal UI options
+-		{ "Number of Transfers", 2, option_flags::numeric_clamp, 1, 10 },
++		{ "Number of Transfers", 3, option_flags::numeric_clamp, 1, 100 },
+ 		{ "Language Code", L"", option_flags::normal, 50 },
+ 		{ "Concurrent download limit", 0, option_flags::numeric_clamp, 0, 10 },
+ 		{ "Concurrent upload limit", 0, option_flags::numeric_clamp, 0, 10 },
+
+--- a/src/interface/settings/optionspage_transfer.cpp
++++ b/src/interface/settings/optionspage_transfer.cpp
+@@ -48,10 +48,10 @@ bool COptionsPageTransfer::CreateControls(wxWindow* parent)
+ 		auto [box, inner] = lay.createStatBox(main, _("Concurrent transfers"), 3);
+ 		inner->Add(new wxStaticText(box, nullID, _("Maximum simultaneous &transfers:")), lay.valign);
+ 		impl_->transfers_ = new wxSpinCtrlEx(box, nullID, wxString(), wxDefaultPosition, wxSize(lay.dlgUnits(26), -1));
+-		impl_->transfers_->SetRange(1, 10);
+-		impl_->transfers_->SetMaxLength(2);
++		impl_->transfers_->SetRange(1, 100);
++		impl_->transfers_->SetMaxLength(3);
+ 		inner->Add(impl_->transfers_, lay.valign);
+-		inner->Add(new wxStaticText(box, nullID, _("(1-10)")), lay.valign);
++		inner->Add(new wxStaticText(box, nullID, _("(1-100)")), lay.valign);
+ 		inner->Add(new wxStaticText(box, nullID, _("Limit for concurrent &downloads:")), lay.valign);
+ 		impl_->downloads_ = new wxSpinCtrlEx(box, nullID, wxString(), wxDefaultPosition, wxSize(lay.dlgUnits(26), -1));
+ 		impl_->downloads_->SetRange(0, 10);
+@@ -179,7 +179,7 @@ bool COptionsPageTransfer::SavePage()
+ 
+ bool COptionsPageTransfer::Validate()
+ {
+-	if (impl_->transfers_->GetValue() < 1 || impl_->transfers_->GetValue() > 10) {
++	if (impl_->transfers_->GetValue() < 1 || impl_->transfers_->GetValue() > 100) {
+ 		return DisplayError(impl_->transfers_, _("Please enter a number between 1 and 10 for the number of concurrent transfers."));
+ 	}
+ 

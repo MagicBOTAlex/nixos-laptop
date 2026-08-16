@@ -41,8 +41,9 @@ in
     ./modules/nodejs.nix
     ./modules/flatpak.nix
     ./modules/mineIcons.nix
-    # ./modules/vr.nix
-    #    ./modules/steam.nix
+    ./modules/vr.nix
+    ./modules/embedded.nix
+    ./modules/steam.nix
     ./modules/spotify.nix
     # ./modules/freecad.nix
     ./modules/gparted.nix
@@ -53,6 +54,7 @@ in
     ./modules/fishShell.nix
     ./modules/pigz.nix
     ./modules/clashVerge.nix
+    ./modules/customPackages/fileZilla
 
     ./users.nix
     ./modules/de.nix
@@ -70,21 +72,22 @@ in
 
   nixpkgs.config.permittedInsecurePackages =
     [ ] ++ lib.optional (toggles.printing3D.enable or false) "libsoup-2.74.3";
-  # nix.settings = {
-  #   # download-attempts = 1;
-  #   # connect-timeout = 1;
-  #   substituters = [
-  #     "https://cache.nixos.org"
-  #     "https://nix-community.cachix.org"
-  #     "https://cache.deprived.dev"
-  #   ];
-  #   trusted-public-keys = [
-  #     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-  #     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-  #     "cache.deprived.dev:B5o97KpSrgbN7OxZCLu0LQYxg+Bj0pB1WiKY5n0HfLY="
-  #   ];
-  # };
-  #
+  nix.settings = {
+    # download-attempts = 1;
+    # connect-timeout = 1;
+    substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+      "https://cache.nixos-cuda.org"
+      # "https://cache.deprived.dev"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      # "cache.deprived.dev:B5o97KpSrgbN7OxZCLu0LQYxg+Bj0pB1WiKY5n0HfLY="
+    ];
+  };
 
   nixpkgs.overlays = [
     (self: super: {
@@ -119,7 +122,8 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Set your time zone.
-  time.timeZone = "Europe/Copenhagen";
+  # time.timeZone = "Europe/Copenhagen";
+  time.timeZone = "Asia/Shanghai";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_DK.UTF-8";

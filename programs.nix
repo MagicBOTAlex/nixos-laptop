@@ -40,13 +40,13 @@
     inkscape
     # krita
     signal-desktop
-    filezilla
     # google-chrome
     wine-wayland
     dig
     alsa-utils
     alsa-tools
     pulseaudioFull
+    dnsmasq
 
     libreoffice-fresh
     hunspell
