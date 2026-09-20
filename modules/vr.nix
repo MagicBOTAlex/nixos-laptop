@@ -124,6 +124,11 @@ in
     ]
     ++ randomLibs;
 
+  services.avahi = {
+    enable = true;
+    publish.userServices = true;
+  };
+
   # systemd.user.services.wayvr = {
   #   description = "wayvr";
   #

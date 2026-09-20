@@ -15,7 +15,8 @@
       pubkey = "cat ~/.ssh/id_ed25519.pub | wl-copy";
       up = "docker compose up -d";
       down = "docker compose down";
-      server = "mosh --ssh='ssh -p 224' --a botserver@gitea.deprived.dev";
+      server = "ssh -p 224 botserver@gitea.deprived.dev";
+      server-s = "mosh --ssh='ssh -p 224' --a botserver@gitea.deprived.dev";
       main = "ssh botmain@192.168.50.58";
       vpnup = "systemctl start openvpn-work.service";
       vpndown = "systemctl down openvpn-work.service";

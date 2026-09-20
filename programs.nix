@@ -41,6 +41,7 @@
     # krita
     signal-desktop
     # google-chrome
+    unrar
     wine-wayland
     dig
     alsa-utils
@@ -60,6 +61,9 @@
     gitoxide
 
     libGL
+    yt-dlp
+    brave
+    opencode
 
     vscodium-fhs
     texliveFull

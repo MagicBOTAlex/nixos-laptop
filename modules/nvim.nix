@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
@@ -72,7 +73,7 @@ in
     nixfmt
     shfmt
     stylua
-    tree-sitter
+    # tree-sitter
   ];
   home.extraOutputsToInstall = [ "nvim-depends" ];
   home.shellAliases.nvim =
@@ -100,17 +101,16 @@ in
       pkg-config
       yarn
       texlivePackages.latex
-      tree-sitter
+      # tree-sitter
       fd
       stdenv.cc.libc
       glibc.dev
       glibc
     ];
 
-    plugins = with pkgs.vimPlugins;
-      [
-        nvim-treesitter.withAllGrammars
-      ];
+    plugins = with pkgs.vimPlugins; [
+      nvim-treesitter.withAllGrammars
+    ];
 
     # extraLuaPackages = ls: with ls;
     #   [ luarocks pkgs.vimPlugins.nvim-treesitter-textobjects ];

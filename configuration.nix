@@ -22,7 +22,7 @@ in
     ./modules/lenovoLegion.nix
     ./modules/svelteSupport.nix
     ./modules/nvim-packages.nix
-    # ./modules/blender.nix
+    ./modules/blender.nix
 
     ./modules/ollama.nix
     ./modules/mosh.nix
@@ -50,10 +50,12 @@ in
     ./modules/smb.nix
     ./ports.nix
     ./modules/extendedDiscord.nix
+    ./modules/bootParams.nix
 
     ./modules/fishShell.nix
+    ./modules/platformio.nix
     ./modules/pigz.nix
-    ./modules/clashVerge.nix
+    # ./modules/clashVerge.nix
     ./modules/customPackages/fileZilla
 
     ./users.nix
@@ -122,8 +124,8 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Set your time zone.
-  # time.timeZone = "Europe/Copenhagen";
-  time.timeZone = "Asia/Shanghai";
+  time.timeZone = "Europe/Copenhagen";
+  # time.timeZone = "Asia/Shanghai";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_DK.UTF-8";
@@ -165,6 +167,15 @@ in
   };
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "wpa_supplicant";
+
+  # Never let logind turn a shutdown into a suspend when the lid is closed.
+  # PowerDevil handles lid-close during a normal session; this covers the
+  # window during shutdown where PowerDevil is already gone.
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
 
   programs.neovim = {
     enable = true;

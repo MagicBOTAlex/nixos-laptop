@@ -4,7 +4,7 @@ let
 in
 {
   environment.systemPackages = [
-    customBlender
+    # customBlender
     pkgs.cudaPackages.cudnn
     pkgs.cudaPackages.cuda_cccl
   ];
