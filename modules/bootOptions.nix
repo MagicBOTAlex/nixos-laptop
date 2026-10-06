@@ -30,6 +30,19 @@ in
 
     (
       lib.mkIf (toggles.boot.mineboot.enable or false) {
+        # Keep the Plymouth (Minecraft) splash from being interrupted by
+        # kernel/udev/initrd messages during stage 1/initrd.
+        boot.consoleLogLevel = 0;
+        boot.initrd.verbose = false;
+        boot.kernelParams = [
+          "quiet"
+          "udev.log_level=0"
+          "rd.udev.log_level=0"
+          "systemd.show_status=false"
+          "rd.systemd.show_status=false"
+          "vt.global_cursor_default=0"
+        ];
+
         boot.plymouth = {
           enable = true;
           theme = "mc";
