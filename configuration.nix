@@ -168,6 +168,9 @@ in
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "wpa_supplicant";
 
+  # Don't block boot on the network coming up.
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   # Never let logind turn a shutdown into a suspend when the lid is closed.
   # PowerDevil handles lid-close during a normal session; this covers the
   # window during shutdown where PowerDevil is already gone.

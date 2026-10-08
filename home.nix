@@ -1,5 +1,6 @@
 { pkgs, lib, ... }:
-let toggles = import ./toggles.nix;
+let
+  toggles = import ./toggles.nix;
 in
 {
   imports = [
@@ -7,8 +8,9 @@ in
     ./configs/plasma6.nix
     ./configs/sharedPlasma.nix
     ./homeModules/btop.nix
+    ./homeModules/ptyxis.nix
 
-  ] ++ lib.optional (toggles.wezterm.enable or false) ./homeModules/wezterm.nix
+  ]
   ++ lib.optional (toggles.vscode.enable or false) ./homeModules/vscode.nix;
 
   # packages only for this user

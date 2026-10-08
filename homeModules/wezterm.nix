@@ -57,7 +57,10 @@ in
     # Point directly to the custom logo path
     icon = customLogo;
     exec = "wezterm start --cwd .";
-    categories = [ "System" "TerminalEmulator" ];
+    categories = [
+      "System"
+      "TerminalEmulator"
+    ];
     terminal = false;
 
     # 3. Critical: Link the running window to this icon
@@ -66,4 +69,3 @@ in
     };
   };
 }
-

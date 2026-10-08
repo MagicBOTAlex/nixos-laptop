@@ -64,6 +64,7 @@
     yt-dlp
     brave
     opencode
+    jq
 
     vscodium-fhs
     texliveFull
