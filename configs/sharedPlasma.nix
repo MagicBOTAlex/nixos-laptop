@@ -8,7 +8,6 @@
 }:
 let
   toggles = import ./../toggles.nix;
-  term = if (toggles.wezterm.enable or false) then "wezterm" else "konsole";
   ruskWallpaper = pkgs.fetchurl {
     url = "https://deprived.dev/assets/zhen/nixos/RuskBackground-nix.png";
     hash = "sha256-bvwUuWclgAo3aBmG2H65YRUIFgh2xjiHMsICcZQOQf8=";
@@ -40,17 +39,6 @@ in
 
     # Shortcuts =====================================
     hotkeys.commands = {
-      "launch-konsole" = {
-        name = "Launch terminal emulator";
-        key = "Meta+Return";
-        command = term;
-      };
-
-      "launch-konsole2" = {
-        name = "Launch terminal emulator";
-        key = "Meta+F1";
-        command = term;
-      };
 
       "launch-missioncenter" = {
         name = "Launches the windows task manager alternative";
@@ -109,8 +97,6 @@ in
       # Fuck the hot corner thingy that makes overview
       "kwinrc"."Effect-overview"."BorderActivate" = 9;
       "kdeglobals"."General"."fixed" = "CozetteVector-nerd,10,-1,5,500,0,0,0,0,0,0,0,0,0,0,1,nerd";
-      "kdeglobals"."General"."TerminalApplication" = "wezterm start --cwd .";
-      "kdeglobals"."General"."TerminalService" = "org.wezfurlong.wezterm.desktop";
       "kdeglobals"."Shortcuts"."OpenContextMenu" = "Shift+F10";
       "klaunchrc"."BusyCursorSettings"."Bouncing" = false;
       "klaunchrc"."FeedbackStyle"."BusyCursor" = false;

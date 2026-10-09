@@ -392,6 +392,26 @@
         "type": "github"
       }
     },
+    "ptyxis": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791466416,
+        "narHash": "sha256-iD0ZCdD2GZG/pA6GD9+3o/XAccGJ+znWK7iwYkzA3uw=",
+        "ref": "refs/heads/main",
+        "rev": "dfcf2121d0da7d73a23751e7d34442d927607bd7",
+        "revCount": 1516,
+        "type": "git",
+        "url": "ssh://forgejo@git.deprived.dev:2222/botalex/ptyxis.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://forgejo@git.deprived.dev:2222/botalex/ptyxis.git"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -403,6 +423,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-xr": "nixpkgs-xr",
         "plasma-manager": "plasma-manager",
+        "ptyxis": "ptyxis",
         "spicetify-nix": "spicetify-nix",
         "vscode-server": "vscode-server"
       }

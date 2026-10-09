@@ -31,6 +31,12 @@
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
+    # ptyxis with wezterm-like Ctrl+Backspace / Shift+Enter handling
+    ptyxis = {
+      url = "git+ssh://forgejo@git.deprived.dev:2222/botalex/ptyxis.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     minemouth.url = "github:nikp123/minecraft-plymouth-theme";
     minegrub-world-sel-theme.url = "github:Lxtharia/minegrub-world-sel-theme";
     minesddm = {

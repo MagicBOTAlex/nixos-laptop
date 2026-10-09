@@ -34,6 +34,11 @@
 
     };
 
+    shellAbbrs = {
+      ":q" = "exit";
+      ":q!" = "exit";
+    };
+
     interactiveShellInit = ''
       set -g fish_user_paths ~/bin $fish_user_paths
       function enter

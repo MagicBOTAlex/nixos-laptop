@@ -38,18 +38,21 @@ let
     pathsToLink = [ "/lib" ];
     ignoreCollisions = true;
   };
+
   nvim-depends-include = pkgs.buildEnv {
     name = "nvim-depends-include";
     paths = splitString ":" (makeIncludePath build-dependent-pkgs);
     extraPrefix = "/lib/nvim-depends/include";
     ignoreCollisions = true;
   };
+
   nvim-depends-pkgconfig = pkgs.buildEnv {
     name = "nvim-depends-pkgconfig";
     paths = splitString ":" (makePkgConfigPath build-dependent-pkgs);
     extraPrefix = "/lib/nvim-depends/pkgconfig";
     ignoreCollisions = true;
   };
+
   buildEnv = [
     "CPATH=${config.home.profileDirectory}/lib/nvim-depends/include"
     "CPLUS_INCLUDE_PATH=${config.home.profileDirectory}/lib/nvim-depends/include/c++/v1"
@@ -75,11 +78,14 @@ in
     stylua
     # tree-sitter
   ];
+
   home.extraOutputsToInstall = [ "nvim-depends" ];
+
+  # Using "command nvim" tells Fish to bypass the generated function and invoke the binary
   home.shellAliases.nvim =
     (concatStringsSep " " buildEnv)
     + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so "
-    + "nvim";
+    + "command nvim";
 
   programs.neovim = {
     enable = true;
@@ -115,6 +121,7 @@ in
     # extraLuaPackages = ls: with ls;
     #   [ luarocks pkgs.vimPlugins.nvim-treesitter-textobjects ];
   };
+
   xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
   # Screw declarative here
