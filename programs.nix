@@ -49,7 +49,7 @@
     pulseaudioFull
     dnsmasq
 
-    libreoffice-fresh
+    libreoffice
     hunspell
     hunspellDicts.da-dk
     # orca-slicer

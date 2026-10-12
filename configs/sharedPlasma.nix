@@ -118,7 +118,7 @@ in
 
   home.packages = with pkgs; [
     qalculate-qt
-    inputs.plasma-manager.packages.${pkgs.system}.rc2nix
+    inputs.plasma-manager.packages.${pkgs.stdenv.hostPlatform.system}.rc2nix
     xdg-desktop-portal
     kdePackages.xdg-desktop-portal-kde
   ];

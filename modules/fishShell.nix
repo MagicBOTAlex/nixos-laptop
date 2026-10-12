@@ -1,6 +1,6 @@
 {pkgs, ...} : {
   programs.fish.enable = true;
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
 
   users.users."botlap".shell = pkgs.fish;
 }

@@ -47,7 +47,7 @@ in
           enable = true;
           theme = "mc";
           themePackages = [
-            inputs.minemouth.packages.${pkgs.system}.plymouth-minecraft-theme
+            inputs.minemouth.packages.${pkgs.stdenv.hostPlatform.system}.plymouth-minecraft-theme
           ];
         };
 
@@ -68,6 +68,16 @@ in
         };
 
         services.displayManager.sddm.settings.Theme.Current = "minesddm";
+
+        # Inlined from inputs.minesddm.nixosModules.default, which uses the
+        # deprecated pkgs.system and emits an evaluation warning.
+        environment.systemPackages = with pkgs; [
+          inputs.minesddm.packages.${pkgs.stdenv.hostPlatform.system}.default
+          qt5.qtbase
+          qt5.qtquickcontrols2
+          qt5.qtgraphicaleffects
+          libsForQt5.layer-shell-qt
+        ];
       }
     )
   ];

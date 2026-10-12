@@ -73,7 +73,6 @@
             # home manager part 2
             inputs.home-manager.nixosModules.default
 
-            inputs.minesddm.nixosModules.default
             inputs.minegrub-world-sel-theme.nixosModules.default
 
             {

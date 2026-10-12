@@ -167,6 +167,10 @@ in
   };
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "wpa_supplicant";
+  # Let NetworkManager put the WiFi radio into power-save when idle.
+  networking.networkmanager.wifi.powersave = true;
+  # No cellular/WWAN hardware on this machine; drop the daemon.
+  networking.modemmanager.enable = false;
 
   # Don't block boot on the network coming up.
   systemd.services.NetworkManager-wait-online.enable = false;

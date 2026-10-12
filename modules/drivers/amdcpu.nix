@@ -20,7 +20,7 @@
     kernelParams = [
       "amd_iommu=on"
       "iommu=pt"
-      "amd_pstate=disactive"
+      "amd_pstate=active"
     ];
   };
 
@@ -53,10 +53,8 @@
   ];
 
   # Optional: CoreCtrl permission settings for full AMD GPU control
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock.enable = true;
-  };
+  programs.corectrl.enable = true;
+  hardware.amdgpu.overdrive.enable = true;
 
   # thermald is an Intel-only daemon — disable or remove it for AMD
   services.thermald.enable = false;

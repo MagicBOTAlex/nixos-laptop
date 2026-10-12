@@ -6,7 +6,7 @@ let
 
     src = pkgs.fetchurl {
       url = "https://ollama.com/download/ollama-linux-amd64.tar.zst";
-      hash = "sha256-99a9vPcbg6qGcMTn3EtpNsCVL8+LEU6vahHLrbloQhQ="; # Replace with your actual hash
+      hash = "sha256-cmvueHBsKBsO7vAHRu/lGgRNccWSw/CxlYIHB/Mf3wQ="; # Replace with your actual hash
     };
 
     nativeBuildInputs = [
@@ -39,6 +39,13 @@ let
         
       runHook postInstall
     '';
+
+    meta = with pkgs.lib; {
+      description = "Ollama local LLM server (prebuilt binary)";
+      homepage = "https://ollama.com";
+      mainProgram = "ollama";
+      platforms = platforms.linux;
+    };
   };
 in
 {

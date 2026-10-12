@@ -6,6 +6,6 @@ in
   environment.systemPackages = [
     # customBlender
     pkgs.cudaPackages.cudnn
-    pkgs.cudaPackages.cuda_cccl
+    pkgs.cudaPackages.cccl
   ];
 }
