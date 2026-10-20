@@ -23,6 +23,7 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKhcUZbIMX0W27l/FMF5WijpdsJAK329/P008OEAfcyz botmain@nixos"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILB0esg3ABIcYWxvQKlPuwEE6cbhNcWjisfky0wnGirJ root@nixos"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxUPAsPkri0B+xkO3sCHJZfKgAbgPcepP8J4WW4yyLj u0_a167@localhost"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIcy0kVrVojsG5QGAlJoMWVKNAydSz1Uogdc6BcAH8fg vm@ubuntu"
       ];
     };
 
