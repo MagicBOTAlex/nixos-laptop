@@ -31,6 +31,7 @@
       cdn = "cd /etc/nixos";
       yaaumma-server = "ssh zhen@188.245.106.241";
       metal = "ssh metal@192.168.50.59";
+      vm = "ssh -J botserver@gitea.deprived.dev:224,metal@192.168.50.59 -p 2222 metal@192.168.50.59";
 
     };
 

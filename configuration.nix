@@ -61,6 +61,7 @@ in
     ./users.nix
     ./modules/de.nix
     ./modules/ydotool.nix
+    ./modules/wg-countr.nix
 
     # ./modules/displayOff.nix
 
@@ -176,26 +177,19 @@ in
   systemd.services.NetworkManager-wait-online.enable = false;
 
   # The Realtek RTL8168 (r8169) does not detect a cable plugged in while the
-  # device is runtime-suspended (powertop --auto-tune suspends it at boot).
-  # Keep this NIC out of runtime PM so hotplugging still brings the link up.
-  systemd.services.r8169-disable-runtime-pm = {
-    description = "Keep the RTL8168 NIC out of runtime suspend for link detection";
-    after = [ "powertop.service" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      for dev in /sys/bus/pci/devices/*; do
-        if [ "$(cat "$dev/vendor" 2>/dev/null)" = "0x10ec" ] \
-          && [ "$(cat "$dev/device" 2>/dev/null)" = "0x8168" ] \
-          && [ -w "$dev/power/control" ]; then
-          echo on > "$dev/power/control"
-        fi
-      done
-    '';
-  };
+  # device is runtime-suspended, and powertop --auto-tune suspends it at boot.
+  # Re-enable it from powertop's own postStart: a separate unit ordered after
+  # powertop.service would create an ordering cycle, because powertop.service
+  # itself runs after multi-user.target.
+  systemd.services.powertop.postStart = lib.mkAfter ''
+    for dev in /sys/bus/pci/devices/*; do
+      if [ "$(cat "$dev/vendor" 2>/dev/null)" = "0x10ec" ] \
+        && [ "$(cat "$dev/device" 2>/dev/null)" = "0x8168" ] \
+        && [ -w "$dev/power/control" ]; then
+        echo on > "$dev/power/control"
+      fi
+    done
+  '';
 
   # Never let logind turn a shutdown into a suspend when the lid is closed.
   # PowerDevil handles lid-close during a normal session; this covers the
